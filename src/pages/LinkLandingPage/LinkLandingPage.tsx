@@ -4,6 +4,8 @@ import { WithStyles } from "@material-ui/styles/withStyles";
 import queryString, { ParsedQuery } from "query-string";
 import React from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
+import FieldSet from "../../components/FieldSet";
+import LedgerDetails from "./LedgerDetails";
 import LinkLandingForm from "./LinkLandingForm";
 
 export interface Ledger {
@@ -142,51 +144,50 @@ const LinkLandingPage = ({ location, classes }: LinkLandingProps) => {
   try {
     swapParams = parseSwapParams(queryString.parse(location.search));
   } catch (error) {
-    /* eslint-disable no-console */
-    // console.log(error);
-    /* eslint-enable no-console */
     showError = true;
     errorMessage = error.toString();
   }
 
   return (
     <React.Fragment>
-      <Paper elevation={1}>
+      <Paper elevation={1} className={classes.root}>
+        <Typography className={classes.title} variant="h4">
+          Send a swap request
+        </Typography>
         <Grid container={true} spacing={40}>
           <Grid item={true} xs={12}>
-            <fieldset className={classes.fieldset}>
-              <legend>Link Parameters</legend>
-              {swapParams && (
-                <Typography variant="body1">
-                  The swap you selected, sorry but you can't change it:
-                </Typography>
-              )}
-              {swapParams && (
-                <Typography variant="body2">
-                  Alpha Ledger: {swapParams.alphaLedger.name} on{" "}
-                  {swapParams.alphaLedger.network}
-                  <br />
-                  Alpha Asset {swapParams.alphaAsset.amount}{" "}
-                  {swapParams.alphaAsset.symbol}
-                  {swapParams.alphaAsset.tokenId &&
-                    "Token: " + swapParams.alphaAsset.tokenId}
-                  <br />
-                  Beta Ledger: {swapParams.betaLedger.name} on{" "}
-                  {swapParams.betaLedger.network}
-                  <br />
-                  Beta Asset {swapParams.betaAsset.amount}{" "}
-                  {swapParams.betaAsset.symbol}
-                  {swapParams.betaAsset.tokenId &&
-                    " Token: " + swapParams.betaAsset.tokenId}
-                  <br />
-                  Peer: {swapParams.peer} <br />
-                  Protocol: {swapParams.protocol} <br />
-                  Trade ID: {swapParams.id} <br />
-                </Typography>
-              )}
-
+            <FieldSet label="Offer Details">
+              <Grid item={true} xs={6}>
+                {swapParams && (
+                  <LedgerDetails
+                    label="Alpha"
+                    asset={swapParams.alphaAsset}
+                    ledger={swapParams.alphaLedger}
+                  />
+                )}
+              </Grid>
+              <Grid item={true} xs={6}>
+                {swapParams && (
+                  <LedgerDetails
+                    label="Beta"
+                    asset={swapParams.betaAsset}
+                    ledger={swapParams.betaLedger}
+                  />
+                )}
+              </Grid>
+              <Grid xs={12}>
+                <FieldSet label="Peer Detail">
+                  {swapParams && (
+                    <Typography variant="body2">
+                      Peer: {swapParams.peer} <br />
+                      Protocol: {swapParams.protocol} <br />
+                      Trade ID: {swapParams.id} <br />
+                    </Typography>
+                  )}
+                </FieldSet>
+              </Grid>
               {showError && <div className="error-message">{errorMessage}</div>}
-            </fieldset>
+            </FieldSet>
           </Grid>
           <Grid item={true} xs={12}>
             {swapParams && <LinkLandingForm swapParams={swapParams} />}
