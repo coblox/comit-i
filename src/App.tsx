@@ -18,6 +18,7 @@ import SendIcon from "@material-ui/icons/Send";
 import React from "react";
 import { Route, RouteComponentProps, withRouter } from "react-router-dom";
 import LinkPlusIcon from "./components/LinkPlus";
+import LinkLandingPage from "./pages/LinkLandingPage/LinkLandingPage";
 import ListSwaps from "./pages/ListSwaps/ListSwaps";
 import SendSwap from "./pages/SendSwapRequest/SendSwapRequest";
 
@@ -102,15 +103,12 @@ function App({ classes, history }: AppProps) {
         <Route exact={true} path="/" component={ListSwaps} />
         <Route path="/make_link" component={MakeLink} />
         <Route path="/send_swap" component={SendSwap} />
-        <Route path="/new_swap" component={LinkLandingPage} />
+        <Route path="/from_link" component={LinkLandingPage} />
       </main>
     </div>
   );
 }
 
 const MakeLink = () => <div>Here is where you can create a new swap-link</div>;
-const LinkLandingPage = () => (
-  <div>Here is where you land when you click on a swap-link</div>
-);
 
 export default withStyles(styles)(withRouter(App));
