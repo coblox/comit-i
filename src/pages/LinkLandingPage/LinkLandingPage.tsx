@@ -1,4 +1,4 @@
-import { createStyles, Paper, Typography } from "@material-ui/core";
+import { createStyles, Grid, Paper, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
 import { WithStyles } from "@material-ui/styles/withStyles";
 import queryString, { ParsedQuery } from "query-string";
@@ -28,7 +28,7 @@ export interface SwapParams {
 }
 
 // Have to use any to access custom mixins
-const styles = (theme: any) =>
+export const styles = (theme: any) =>
   createStyles({
     root: {
       margin: "auto",
@@ -135,7 +135,7 @@ function parseSwapParams(parsedQuery: ParsedQuery): SwapParams {
   };
 }
 
-const LinkLandingPage = ({ location }: LinkLandingProps) => {
+const LinkLandingPage = ({ location, classes }: LinkLandingProps) => {
   let swapParams;
   let showError = false;
   let errorMessage = "";
@@ -152,41 +152,46 @@ const LinkLandingPage = ({ location }: LinkLandingProps) => {
   return (
     <React.Fragment>
       <Paper elevation={1}>
-        <fieldset>
-          <legend>Link Parameters</legend>
-          {swapParams && (
-            <Typography variant="body1">
-              The swap you selected, sorry but you can't change it:
-            </Typography>
-          )}
-          {swapParams && (
-            <Typography variant="body2">
-              Alpha Ledger: {swapParams.alphaLedger.name} on{" "}
-              {swapParams.alphaLedger.network}
-              <br />
-              Alpha Asset {swapParams.alphaAsset.amount}{" "}
-              {swapParams.alphaAsset.symbol}
-              {swapParams.alphaAsset.tokenId &&
-                "Token: " + swapParams.alphaAsset.tokenId}
-              <br />
-              Beta Ledger: {swapParams.betaLedger.name} on{" "}
-              {swapParams.betaLedger.network}
-              <br />
-              Beta Asset {swapParams.betaAsset.amount}{" "}
-              {swapParams.betaAsset.symbol}
-              {swapParams.betaAsset.tokenId &&
-                " Token: " + swapParams.betaAsset.tokenId}
-              <br />
-              Peer: {swapParams.peer} <br />
-              Protocol: {swapParams.protocol} <br />
-              Trade ID: {swapParams.id} <br />
-            </Typography>
-          )}
+        <Grid container={true} spacing={40}>
+          <Grid item={true} xs={12}>
+            <fieldset className={classes.fieldset}>
+              <legend>Link Parameters</legend>
+              {swapParams && (
+                <Typography variant="body1">
+                  The swap you selected, sorry but you can't change it:
+                </Typography>
+              )}
+              {swapParams && (
+                <Typography variant="body2">
+                  Alpha Ledger: {swapParams.alphaLedger.name} on{" "}
+                  {swapParams.alphaLedger.network}
+                  <br />
+                  Alpha Asset {swapParams.alphaAsset.amount}{" "}
+                  {swapParams.alphaAsset.symbol}
+                  {swapParams.alphaAsset.tokenId &&
+                    "Token: " + swapParams.alphaAsset.tokenId}
+                  <br />
+                  Beta Ledger: {swapParams.betaLedger.name} on{" "}
+                  {swapParams.betaLedger.network}
+                  <br />
+                  Beta Asset {swapParams.betaAsset.amount}{" "}
+                  {swapParams.betaAsset.symbol}
+                  {swapParams.betaAsset.tokenId &&
+                    " Token: " + swapParams.betaAsset.tokenId}
+                  <br />
+                  Peer: {swapParams.peer} <br />
+                  Protocol: {swapParams.protocol} <br />
+                  Trade ID: {swapParams.id} <br />
+                </Typography>
+              )}
 
-          {showError && <div className="error-message">{errorMessage}</div>}
-        </fieldset>
-
-        {swapParams && <LinkLandingForm swapParams={swapParams} />}
+              {showError && <div className="error-message">{errorMessage}</div>}
+            </fieldset>
+          </Grid>
+          <Grid item={true} xs={12}>
+            {swapParams && <LinkLandingForm swapParams={swapParams} />}
+          </Grid>
+        </Grid>
       </Paper>
     </React.Fragment>
   );
