@@ -52,6 +52,7 @@
     "babel-loader": "^8.0.5",
     "bestzip": "^2.1.2",
     "cypress": "^3.1.5",
+    "json-schema-to-typescript": "^6.1.3",
     "prettier": "^1.16.4",
     "react-test-renderer": "^16.8.6",
     "serve": "^10.1.2",
@@ -62,7 +63,9 @@
     "typescript": "3.3.3333"
   },
   "scripts": {
-    "prestart": "git config core.hooksPath .githooks",
+    "gen": "mkdir -p ./gen && json2ts -i ./siren.schema.json -o ./gen/siren.d.ts",
+    "prestart": "git config core.hooksPath .githooks; yarn run gen",
+    "postinstall": "yarn run gen",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --passWithNoTests",
