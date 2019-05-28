@@ -51,7 +51,7 @@ const SendSwap = ({ location, history }: RouteComponentProps) => {
     <React.Fragment>
       <Page title={"Send a swap request"}>
         <form onSubmit={handleFormSubmit}>
-          <Grid container={true} spacing={16}>
+          <Grid container={true} spacing={2}>
             <SwapForm
               swap={swap}
               ledgers={ledgers}

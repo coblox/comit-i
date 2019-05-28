@@ -7,7 +7,7 @@ const styles = (theme: Theme) =>
   createStyles({
     root: {
       textAlign: "center",
-      marginTop: theme.spacing.unit * 2
+      marginTop: theme.spacing(2)
     },
     progress: {
       animationDuration: `${theme.transitions.duration.standard * 2}ms`

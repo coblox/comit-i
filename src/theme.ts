@@ -8,9 +8,6 @@ declare module "@material-ui/core/styles/createMixins" {
 }
 
 const appTheme = createMuiTheme({
-  typography: {
-    useNextVariants: true
-  },
   mixins: {
     border: (theme: Theme) => ({
       borderWidth: "1px",

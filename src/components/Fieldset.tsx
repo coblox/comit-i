@@ -1,8 +1,9 @@
+import { Theme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import classNames from "classnames";
 import React, { ReactNode } from "react";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: theme.mixins.border(theme)
 }));
 

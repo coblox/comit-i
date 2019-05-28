@@ -80,7 +80,7 @@ const MakeLink = () => {
 
   return (
     <Page title={"Create a new swap link"}>
-      <Grid container={true} spacing={40}>
+      <Grid container={true} spacing={5}>
         <SwapForm swap={swap} ledgers={ledgers} dispatch={dispatch} />
         <Grid item={true} xs={12} md={6}>
           <TextField
@@ -110,7 +110,7 @@ const MakeLink = () => {
         <Grid item={true} xs={12}>
           <SubTitle text={"The generated link"} />
           <Paper elevation={2}>
-            <Grid container={true} spacing={16} alignItems={"center"}>
+            <Grid container={true} spacing={2} alignItems={"center"}>
               <Grid
                 item={true}
                 container={true}

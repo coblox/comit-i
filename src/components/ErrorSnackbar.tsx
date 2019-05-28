@@ -22,7 +22,7 @@ const styles = (theme: Theme) =>
       alignItems: "center"
     },
     icon: {
-      marginRight: theme.spacing.unit
+      marginRight: theme.spacing(1)
     }
   });
 

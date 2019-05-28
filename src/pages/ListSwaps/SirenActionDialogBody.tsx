@@ -1,6 +1,5 @@
 import {
   Button,
-  CircularProgress,
   DialogActions,
   DialogContent,
   DialogTitle
@@ -8,15 +7,63 @@ import {
 import { ButtonProps } from "@material-ui/core/Button";
 import { DialogTitleProps } from "@material-ui/core/DialogTitle";
 import { AxiosRequestConfig } from "axios";
-import React, { useReducer, useState } from "react";
+import React, { useReducer } from "react";
+import URI from "urijs";
 import { Action, Field } from "../../../gen/siren";
-import executeAction from "../../api/executeAction";
 import EthereumAddressTextField from "../../components/EthereumAddressTextField";
 import TextField from "../../components/TextField";
 
 interface Props {
   action: Action;
   onClose: () => void;
+  onRequest: (request: AxiosRequestConfig) => void;
+}
+
+export default function SirenActionDialogBody({
+  action,
+  onClose,
+  onRequest
+}: Props) {
+  const method = action.method || "GET";
+  const title = action.title || action.name;
+
+  const [actionPayload, dispatch] = useReducer(actionPayloadReducer, {});
+
+  const formFields = action.fields
+    ? action.fields.map(field =>
+        renderField(field, actionPayload[field.name] || "", newValue =>
+          dispatch({
+            type: "onFieldChanged",
+            payload: {
+              fieldName: field.name,
+              newValue
+            }
+          })
+        )
+      )
+    : [];
+
+  return (
+    <React.Fragment>
+      <Title method={method} title={title} />
+      <form
+        onSubmit={event => {
+          event.preventDefault();
+          const request = actionToRequest(action, actionPayload);
+
+          onRequest(request);
+        }}
+      >
+        <DialogContent>{formFields}</DialogContent>
+        <DialogActions>
+          <PrimaryActionButton method={method} title={title} type={"submit"} />
+          <Button variant={"contained"} color={"secondary"} onClick={onClose}>
+            Close
+          </Button>
+        </DialogActions>
+      </form>
+    </React.Fragment>
+  );
 }
 
 function renderField(
@@ -31,6 +78,7 @@ function renderField(
         key={field.name}
         label={field.title}
         onAddress={onChange}
+        onChange={event => onChange(event.target.value)}
         value={value}
       />
     );
@@ -108,13 +156,13 @@ function PrimaryActionButton({
   switch (method) {
     case "GET":
       return (
-        <Button variant={"raised"} color={"primary"} {...buttonProps}>
+        <Button variant={"contained"} color={"primary"} {...buttonProps}>
           {`Fetch ${title}`}
         </Button>
       );
     default:
       return (
-        <Button variant={"raised"} color={"primary"} {...buttonProps}>
+        <Button variant={"contained"} color={"primary"} {...buttonProps}>
           {`Execute ${title}`}
         </Button>
       );
@@ -134,78 +182,5 @@ function actionToRequest(action: Action, data: any): AxiosRequestConfig {
       url: action.href,
       data
     };
-  }
-}
-
-export default function SirenActionDialogBody({ action, onClose }: Props) {
-  const method = action.method || "GET";
-  const title = action.title || action.name;
-
-  const [actionPayload, reducer] = useReducer(actionPayloadReducer, {});
-  const [inProgress, setInProgress] = useState(false);
-  const [response, setResponse] = useState({});
-  const [error, setError] = useState(null);
-
-  const hasFields = action.fields && action.fields.length > 0;
-
-  if (!hasFields) {
-    if (!inProgress && !response && !error) {
-      const request = actionToRequest(action, {});
-
-      setInProgress(true);
-      executeAction(request)
-        .then(setResponse)
-        .catch(setError)
-        .finally(() => setInProgress(false));
-
-      // trigger the request
-      // early return with spinner and maybe some text
-
-      return <CircularProgress disableShrink={true} />;
-    }
-  } else {
-    const formFields = action.fields
-      ? action.fields.map(field =>
-          renderField(field, actionPayload[field.name] || "", newValue =>
-            reducer({
-              type: "onFieldChanged",
-              payload: {
-                fieldName: field.name,
-                newValue
-              }
-            })
-          )
-        )
-      : [];
-
-    return (
-      <React.Fragment>
-        <Title method={method} title={title} />
-        <form
-          onSubmit={event => {
-            event.preventDefault();
-            const request = actionToRequest(action, actionPayload);
-
-            setInProgress(true);
-            executeAction(request)
-              .then(setResponse)
-              .catch(setError)
-              .finally(() => setInProgress(false));
-          }}
-        >
-          <DialogContent>{formFields}</DialogContent>
-          <DialogActions>
-            <PrimaryActionButton
-              method={method}
-              title={title}
-              type={"submit"}
-            />
-            <Button variant={"raised"} color={"secondary"} onClick={onClose}>
-              Close
-            </Button>
-          </DialogActions>
-        </form>
-      </React.Fragment>
-    );
   }
 }

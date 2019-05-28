@@ -1,13 +1,13 @@
-import { TextField as MUITextField } from "@material-ui/core";
+import { TextField as MUITextField, Theme } from "@material-ui/core";
 import { TextFieldProps } from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/styles";
 import classNames from "classnames";
 import * as React from "react";
 
-const useTextFieldStyles = makeStyles(theme => ({
+const useTextFieldStyles = makeStyles((theme: Theme) => ({
   textField: {
     display: "flex",
-    margin: theme.spacing.unit
+    margin: theme.spacing(1)
   }
 }));
 

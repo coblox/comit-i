@@ -1,9 +1,9 @@
-import { Paper } from "@material-ui/core";
+import { Paper, Theme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import React, { ReactNode } from "react";
 import { Title } from "./text";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     margin: "auto",
     [theme.breakpoints.up("md")]: {
@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up("xl")]: {
       maxWidth: "40vw"
     },
-    padding: theme.spacing.unit * 3
+    padding: theme.spacing(3)
   }
 }));
 

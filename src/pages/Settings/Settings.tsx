@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from "@material-ui/core";
+import { Button, Grid, Theme, Typography } from "@material-ui/core";
 import SaveIcon from "@material-ui/icons/Save";
 import { makeStyles } from "@material-ui/styles";
 import React, { useState } from "react";
@@ -9,12 +9,16 @@ import SuccessSnackbar from "../../components/SuccessSnackbar";
 import TextField from "../../components/TextField";
 import { LocalStorageSettingsStore } from "../../settingsStore";
 
-const useSettingsStyles = makeStyles(theme => ({
+interface StyleProps {
+  overrideActive: boolean;
+}
+
+const useSettingsStyles = makeStyles<Theme, StyleProps>(theme => ({
   button: {
-    margin: theme.spacing.unit * 2
+    margin: theme.spacing(2)
   },
   icon: {
-    marginLeft: theme.spacing.unit
+    marginLeft: theme.spacing(1)
   },
   fieldset: ({ overrideActive }) => ({
     opacity: overrideActive ? 0.3 : 1
@@ -59,7 +63,7 @@ function Settings() {
             disabled={config.isOverrideActive()}
             className={classes.fieldset}
           >
-            <Grid container={true} spacing={40}>
+            <Grid container={true} spacing={5}>
               <Grid item={true} xs={12} md={6}>
                 <TextField
                   label="Host"

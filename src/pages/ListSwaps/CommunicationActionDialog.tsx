@@ -51,7 +51,7 @@ function CommunicationActionDialog({
   };
   const handleSentResponse = () => {
     onClose();
-    location.reload();
+    window.location.reload();
   };
 
   switch (action.name) {

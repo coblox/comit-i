@@ -1,10 +1,10 @@
-import { TableCell, TableRow, Typography } from "@material-ui/core";
+import { TableCell, TableRow, Theme, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import React from "react";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    height: theme.spacing.unit * 20
+    height: theme.spacing(20)
   }
 }));
 
@@ -20,9 +20,7 @@ function EmptySwapListTableRow() {
         align={"center"}
         colSpan={100} // Just needs to be more than our actual number of columns to span all of them
       >
-        <Typography variant="display2">
-          The list of swaps is empty :(
-        </Typography>
+        <Typography variant="h3">The list of swaps is empty :(</Typography>
       </TableCell>
     </TableRow>
   );

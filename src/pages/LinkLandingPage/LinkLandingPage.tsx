@@ -81,7 +81,7 @@ const LinkLandingPage = ({ location, history }: RouteComponentProps) => {
     <React.Fragment>
       <Page title={"Send a swap request"}>
         <form onSubmit={onSubmit}>
-          <Grid container={true} spacing={16}>
+          <Grid container={true} spacing={2}>
             <Grid item={true} xs={12}>
               {error ? <ErrorMessage /> : <InfoMessage />}
             </Grid>
