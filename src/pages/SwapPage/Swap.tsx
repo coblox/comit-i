@@ -1,8 +1,12 @@
-import { Card, CardActions, Grid } from "@material-ui/core";
+import { Card, Grid } from "@material-ui/core";
 import React from "react";
-import { CommunicationStatus, GetSwapResponse } from "../../api/swapResource";
-import { Role } from "../../api/swapTypes";
-import actionDialogs from "../../components/ActionDialogs";
+import { Entity } from "../../../gen/siren";
+import {
+  AdditionalProperties,
+  CommunicationStatus,
+  Properties,
+  Role
+} from "../../api/swapTypes";
 import Page from "../../components/Page";
 import { SubTitle } from "../../components/text";
 import AssetCard from "./AssetCard";
@@ -10,46 +14,33 @@ import Rfc003BlockchainLog from "./BlockchainLog";
 import CommunicationCardHeader from "./CommunicationCard";
 
 interface SwapProps {
-  swap: GetSwapResponse;
+  swap: Entity;
 }
 
 function Swap({ swap }: SwapProps) {
+  const properties = swap.properties as Properties & AdditionalProperties;
   const [alphaLedger, betaLedger] = [
-    swap.properties.parameters.alpha_ledger,
-    swap.properties.parameters.beta_ledger
+    properties.parameters.alpha_ledger,
+    properties.parameters.beta_ledger
   ];
   const [alphaAsset, betaAsset] = [
-    swap.properties.parameters.alpha_asset,
-    swap.properties.parameters.beta_asset
+    properties.parameters.alpha_asset,
+    properties.parameters.beta_asset
   ];
 
   const [alphaExpiry, betaExpiry] = [
-    swap.properties.state.communication.alpha_expiry,
-    swap.properties.state.communication.beta_expiry
+    properties.state.communication.alpha_expiry,
+    properties.state.communication.beta_expiry
   ];
 
   const tradeActions = ["Selling", "Buying"];
   const [alphaTradeAction, betaTradeAction] =
-    swap.properties.role === Role.Alice ? tradeActions : tradeActions.reverse();
-
-  const actions = actionDialogs(
-    swap.links,
-    swap.properties.role,
-    alphaLedger,
-    betaLedger
-  );
-
-  const communicationActionsButtons = actions.buttons.filter(
-    elem => elem.action === "accept" || elem.action === "decline"
-  );
-  const ledgerActionsButtons = actions.buttons.filter(
-    elem => !(elem.action === "accept" || elem.action === "decline")
-  );
+    properties.role === Role.Alice ? tradeActions : tradeActions.reverse();
 
   return (
     <React.Fragment>
       <Page title="Swap">
-        <Grid container={true} spacing={16} justify="space-evenly">
+        <Grid container={true} spacing={2} justify="space-evenly">
           <Grid item={true} xs={6}>
             <AssetCard
               title="Alpha"
@@ -71,33 +62,28 @@ function Swap({ swap }: SwapProps) {
           <Grid item={true} xs={12}>
             <Card>
               <CommunicationCardHeader
-                status={swap.properties.state.communication.status}
-                role={swap.properties.role}
+                status={properties.state.communication.status}
+                role={properties.role}
               />
-              <CardActions>
-                {communicationActionsButtons.map(elem => elem.button)}
-              </CardActions>
             </Card>
           </Grid>
-          {swap.properties.state.communication.status ===
+          {properties.state.communication.status ===
             CommunicationStatus.Accepted && (
             <React.Fragment>
               <Grid item={true} xs={12}>
                 <SubTitle text={"Ledger events and actions"} />
               </Grid>
               <Rfc003BlockchainLog
-                alphaState={swap.properties.state.alpha_ledger}
-                alphaLedger={swap.properties.parameters.alpha_ledger}
-                betaState={swap.properties.state.beta_ledger}
-                betaLedger={swap.properties.parameters.beta_ledger}
-                role={swap.properties.role}
-                actions={ledgerActionsButtons}
+                alphaState={properties.state.alpha_ledger}
+                alphaLedger={properties.parameters.alpha_ledger}
+                betaState={properties.state.beta_ledger}
+                betaLedger={properties.parameters.beta_ledger}
+                role={properties.role}
               />
             </React.Fragment>
           )}
         </Grid>
       </Page>
-      {actions.dialogs}
     </React.Fragment>
   );
 }

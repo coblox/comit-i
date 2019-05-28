@@ -1,10 +1,9 @@
-import { TableCell, TableRow } from "@material-ui/core";
+import { Button, TableCell, TableRow } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import React from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import { Link, Swap } from "../../api/swapsResource";
-import { Asset, toMainUnit } from "../../api/swapTypes";
-import actionDialogs from "../../components/ActionDialogs";
+import { EmbeddedRepresentationSubEntity } from "../../../gen/siren";
+import { Asset, Properties, toMainUnit } from "../../api/swapTypes";
 import SwapStatusIcon from "./SwapStatusIcon";
 
 interface AssetCellProps {
@@ -22,26 +21,27 @@ const useStyles = makeStyles(() => ({
 }));
 
 interface SwapRowProps extends RouteComponentProps {
-  swap: Swap;
+  swap: EmbeddedRepresentationSubEntity;
 }
 
 function SwapRow({ swap, history }: SwapRowProps) {
   const classes = useStyles();
 
-  const swapLink = swap.links.find(link => link.rel.includes("self")) as Link;
-  function onRowClick() {
-    history.push("/show_resource" + swapLink.href);
+  const links = swap.links || [];
+  const properties = swap.properties as Properties;
+  const actions = swap.actions || [];
+  const swapLink = links.find(link => link.rel.includes("self"));
+
+  if (!swapLink) {
+    throw new Error("Swap does not contain self link.");
   }
 
-  const protocolSpecLink = swap.links.find(link =>
-    link.rel.includes("human-protocol-spec")
-  );
+  const onRowClick = () => {
+    history.push("/show_resource" + swapLink.href);
+  };
 
-  const actions = actionDialogs(
-    swap.links,
-    swap.properties.role,
-    swap.properties.parameters.alpha_ledger,
-    swap.properties.parameters.beta_ledger
+  const protocolSpecLink = links.find(link =>
+    link.rel.includes("human-protocol-spec")
   );
 
   return (
@@ -53,15 +53,15 @@ function SwapRow({ swap, history }: SwapRowProps) {
         data-cy="swap-row"
       >
         <TableCell align="center">
-          <SwapStatusIcon status={swap.properties.status} />
+          <SwapStatusIcon status={properties.status} />
         </TableCell>
-        <TableCell>{swap.properties.parameters.alpha_ledger.name}</TableCell>
+        <TableCell>{properties.parameters.alpha_ledger.name}</TableCell>
         <TableCell>
-          <AssetCell asset={swap.properties.parameters.alpha_asset} />
+          <AssetCell asset={properties.parameters.alpha_asset} />
         </TableCell>
-        <TableCell>{swap.properties.parameters.beta_ledger.name}</TableCell>
+        <TableCell>{properties.parameters.beta_ledger.name}</TableCell>
         <TableCell>
-          <AssetCell asset={swap.properties.parameters.beta_asset} />
+          <AssetCell asset={properties.parameters.beta_asset} />
         </TableCell>
         <TableCell>
           {protocolSpecLink ? (
@@ -70,17 +70,22 @@ function SwapRow({ swap, history }: SwapRowProps) {
               target={"_blank"}
               href={protocolSpecLink.href}
             >
-              {swap.properties.protocol}
+              {properties.protocol}
             </a>
           ) : (
-            swap.properties.protocol
+            properties.protocol
           )}
         </TableCell>
 
-        <TableCell>{swap.properties.role}</TableCell>
-        <TableCell>{actions.buttons.map(elem => elem.button)}</TableCell>
+        <TableCell>{properties.role}</TableCell>
+        <TableCell>
+          {actions.map(action => (
+            <Button key={action.name} variant={"contained"}>
+              {action.title}
+            </Button>
+          ))}
+        </TableCell>
       </TableRow>
-      {actions.dialogs}
     </React.Fragment>
   );
 }

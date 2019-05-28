@@ -6,12 +6,12 @@ import {
   TableRow
 } from "@material-ui/core";
 import React from "react";
-import { Swap } from "../../api/swapsResource";
+import { EmbeddedRepresentationSubEntity } from "../../../gen/siren";
 import EmptySwapListTableRow from "./EmptySwapListTableRow";
 import SwapRow from "./SwapRow";
 
 interface SwapListProps {
-  swaps: Swap[];
+  swaps: EmbeddedRepresentationSubEntity[];
 }
 
 function SwapList({ swaps }: SwapListProps) {

@@ -21,7 +21,7 @@ function LedgerActionDialogBody({
 }: LedgerActionDialogBodyProps) {
   function onSuccess() {
     onClose();
-    location.reload();
+    window.location.reload();
   }
 
   switch (action.type) {

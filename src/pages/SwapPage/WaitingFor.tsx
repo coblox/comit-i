@@ -1,7 +1,6 @@
 import { Typography } from "@material-ui/core";
 import React from "react";
-import { HtlcState } from "../../api/swapResource";
-import { LedgerKind, Role } from "../../api/swapTypes";
+import { HtlcState, LedgerKind, Role } from "../../api/swapTypes";
 
 interface WaitingForProps {
   role: Role;

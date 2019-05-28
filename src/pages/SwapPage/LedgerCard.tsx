@@ -1,14 +1,18 @@
 import {
   Card,
-  CardActions,
   CardContent,
   CardHeader,
   List,
   Typography
 } from "@material-ui/core";
 import React from "react";
-import { HtlcState, LedgerState } from "../../api/swapResource";
-import { Ledger, LedgerKind, Role } from "../../api/swapTypes";
+import {
+  HtlcState,
+  Ledger,
+  LedgerKind,
+  LedgerState,
+  Role
+} from "../../api/swapTypes";
 import ExplorerLink, { ResourceType } from "./ExplorerLink";
 import HtlcLocationTypography from "./HtlcLocationTypography";
 import WaitingFor from "./WaitingFor";
@@ -19,7 +23,6 @@ interface LedgerCardProps {
   ledgerState: LedgerState;
   otherLedgerState: LedgerState;
   role: Role;
-  actions: Array<{ action: string; button: React.ReactNode }>;
 }
 
 function LedgerCard({
@@ -27,8 +30,7 @@ function LedgerCard({
   ledger,
   ledgerState,
   otherLedgerState,
-  role,
-  actions
+  role
 }: LedgerCardProps) {
   let transactions = [
     { verb: "deployed", hash: ledgerState.deploy_tx },
@@ -84,7 +86,6 @@ function LedgerCard({
           betaHtlcState={betaLedgerState.status}
         />
       </CardContent>
-      <CardActions>{actions.map(elem => elem.button)}</CardActions>
     </Card>
   );
 }

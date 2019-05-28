@@ -5,6 +5,7 @@ import {
   CardHeader,
   Collapse,
   IconButton,
+  Theme,
   Typography
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -15,7 +16,7 @@ import React, { useState } from "react";
 import { Asset, Ledger, toMainUnit } from "../../api/swapTypes";
 import ExplorerLink, { ResourceType } from "./ExplorerLink";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles<Theme>(theme => ({
   actions: {
     display: "flex"
   },

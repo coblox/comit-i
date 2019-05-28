@@ -5,12 +5,12 @@ import {
   faTimes
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Tooltip } from "@material-ui/core";
+import { Theme, Tooltip } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import React from "react";
 import { Status } from "../../api/swapTypes";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles<Theme>(theme => ({
   inProgressIcon: {
     color: theme.palette.primary.main
   },
