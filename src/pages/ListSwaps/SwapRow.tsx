@@ -1,10 +1,18 @@
-import { Button, Dialog, TableCell, TableRow } from "@material-ui/core";
+import {
+  Button,
+  CircularProgress,
+  Dialog,
+  TableCell,
+  TableRow
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import { EmbeddedRepresentationSubEntity } from "../../../gen/siren";
+import { Action, EmbeddedRepresentationSubEntity } from "../../../gen/siren";
 import executeAction from "../../api/executeAction";
+import { LedgerAction } from "../../api/getAction";
 import { Asset, Properties, toMainUnit } from "../../api/swapTypes";
+import LedgerActionDialogBody from "./LedgerActionDialogBody";
 import SirenActionParametersDialogBody from "./SirenActionParametersDialogBody";
 import SwapStatusIcon from "./SwapStatusIcon";
 
@@ -22,62 +30,26 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
+enum ActionExecutionState {
+  NotYetSent,
+  InProgress,
+  Done,
+  Error
+}
+
 interface SwapRowProps extends RouteComponentProps {
   swap: EmbeddedRepresentationSubEntity;
 }
 
-// tslint:disable-next-line:interface-over-type-literal
-type ReducerAction = {
-  type: "openDialog" | "closeDialog";
-  payload: {
-    dialogKey: string;
-  };
-};
-
-interface DialogState {
-  [key: string]: boolean;
-}
-
-function reducer(state: DialogState, action: ReducerAction) {
-  switch (action.type) {
-    case "openDialog": {
-      // TODO: close all dialogs if a dialog is opened to be safe
-      return {
-        ...state,
-        [action.payload.dialogKey]: true
-      };
-    }
-    case "closeDialog": {
-      return {
-        ...state,
-        [action.payload.dialogKey]: false
-      };
-    }
-  }
-
-  return {};
-}
-
-function openDialog(dialogKey: string): ReducerAction {
-  return {
-    type: "openDialog",
-    payload: {
-      dialogKey
-    }
-  };
-}
-
-function closeDialog(dialogKey: string): ReducerAction {
-  return {
-    type: "closeDialog",
-    payload: {
-      dialogKey
-    }
-  };
-}
-
 function SwapRow({ swap, history }: SwapRowProps) {
-  const [dialogState, dispatch] = useReducer(reducer, {});
+  const [
+    { activeSirenParameterDialog, activeLedgerActionDialog },
+    dispatch
+  ] = useReducer(reducer, initialState);
+  const [actionExecutionState, setActionExecutionState] = useState(
+    ActionExecutionState.NotYetSent
+  );
+
   const classes = useStyles();
 
   const links = swap.links || [];
@@ -96,6 +68,69 @@ function SwapRow({ swap, history }: SwapRowProps) {
   const protocolSpecLink = links.find(link =>
     link.rel.includes("human-protocol-spec")
   );
+
+  const actionButtons = actions.map(action => (
+    <Button
+      type={"button"}
+      key={action.name}
+      variant={"contained"}
+      onClick={() => {
+        const fields = action.fields || [];
+
+        if (fields.length > 0) {
+          dispatch(openSirenParametersDialog(action));
+        } else {
+          executeSirenAction(action);
+        }
+      }}
+    >
+      {action.title}
+    </Button>
+  ));
+
+  const sirenActionDialog = activeSirenParameterDialog ? (
+    <Dialog open={true}>
+      <SirenActionParametersDialogBody
+        action={activeSirenParameterDialog}
+        onClose={() => dispatch(closeSirenParametersDialog())}
+        onSubmit={data => {
+          executeSirenAction(activeSirenParameterDialog, data);
+          dispatch(closeSirenParametersDialog());
+        }}
+      />
+    </Dialog>
+  ) : null;
+
+  const ledgerActionDialog = activeLedgerActionDialog ? (
+    <Dialog open={true}>
+      <LedgerActionDialogBody
+        action={activeLedgerActionDialog}
+        onClose={() => dispatch(closeLedgerActionDialog())}
+      />
+    </Dialog>
+  ) : null;
+
+  const executeSirenAction = (sirenAction: Action, data = {}) => {
+    setActionExecutionState(ActionExecutionState.InProgress);
+    executeAction(sirenAction, data)
+      .then(response => {
+        const data = response.data;
+        const contentType = response.headers["content-type"];
+
+        if (
+          data &&
+          contentType === "application/json" &&
+          data.type &&
+          data.payload
+        ) {
+          const ledgerAction = data as LedgerAction;
+          dispatch(openLedgerActionDialog(ledgerAction));
+        }
+
+        setActionExecutionState(ActionExecutionState.Done);
+      })
+      .catch(() => setActionExecutionState(ActionExecutionState.Error));
+  };
 
   return (
     <React.Fragment key={swapLink.href}>
@@ -120,7 +155,8 @@ function SwapRow({ swap, history }: SwapRowProps) {
           {protocolSpecLink ? (
             <a
               onClick={e => e.stopPropagation()}
-              target={"_blank"}
+              target="_blank"
+              rel="noopener noreferrer"
               href={protocolSpecLink.href}
             >
               {properties.protocol}
@@ -132,38 +168,95 @@ function SwapRow({ swap, history }: SwapRowProps) {
 
         <TableCell>{properties.role}</TableCell>
         <TableCell>
-          {actions.map(action => (
-            <React.Fragment key={action.name}>
-              <Button
-                variant={"contained"}
-                onClick={() => {
-                  const fields = action.fields || [];
-
-                  if (fields.length > 0) {
-                    dispatch(openDialog(action.name));
-                  } else {
-                    executeAction(action, {});
-                  }
-                }}
-              >
-                {action.title}
-              </Button>
-              <Dialog open={dialogState[action.name]}>
-                <SirenActionParametersDialogBody
-                  action={action}
-                  onClose={() => dispatch(closeDialog(action.name))}
-                  onSubmit={data => {
-                    executeAction(action, data);
-                    dispatch(closeDialog(action.name));
-                  }}
-                />
-              </Dialog>
-            </React.Fragment>
-          ))}
+          {actionExecutionState === ActionExecutionState.InProgress ? (
+            <CircularProgress size={"small"} />
+          ) : (
+            actionButtons
+          )}
         </TableCell>
+
+        {sirenActionDialog}
+        {ledgerActionDialog}
       </TableRow>
     </React.Fragment>
   );
+}
+
+type ReducerAction =
+  | {
+      type: "openSirenParametersDialog";
+      payload: {
+        action: Action;
+      };
+    }
+  | {
+      type: "closeSirenParametersDialog";
+    }
+  | {
+      type: "closeLedgerActionDialog";
+    }
+  | {
+      type: "openLedgerActionDialog";
+      payload: {
+        action: LedgerAction;
+      };
+    };
+
+interface DialogState {
+  activeSirenParameterDialog?: Action;
+  activeLedgerActionDialog?: LedgerAction;
+}
+
+const initialState: DialogState = {};
+
+function reducer(state: DialogState, action: ReducerAction): DialogState {
+  switch (action.type) {
+    case "openSirenParametersDialog": {
+      return {
+        activeSirenParameterDialog: action.payload.action
+      };
+    }
+    case "openLedgerActionDialog": {
+      return {
+        activeLedgerActionDialog: action.payload.action
+      };
+    }
+    case "closeLedgerActionDialog":
+    case "closeSirenParametersDialog":
+      return {};
+  }
+
+  return state;
+}
+
+function openSirenParametersDialog(sirenAction: Action): ReducerAction {
+  return {
+    type: "openSirenParametersDialog",
+    payload: {
+      action: sirenAction
+    }
+  };
+}
+
+function closeSirenParametersDialog(): ReducerAction {
+  return {
+    type: "closeSirenParametersDialog"
+  };
+}
+
+function openLedgerActionDialog(ledgerAction: LedgerAction): ReducerAction {
+  return {
+    type: "openLedgerActionDialog",
+    payload: {
+      action: ledgerAction
+    }
+  };
+}
+
+function closeLedgerActionDialog(): ReducerAction {
+  return {
+    type: "closeLedgerActionDialog"
+  };
 }
 
 export default withRouter(SwapRow);

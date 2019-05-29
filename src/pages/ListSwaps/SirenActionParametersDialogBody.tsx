@@ -6,9 +6,7 @@ import {
 } from "@material-ui/core";
 import { ButtonProps } from "@material-ui/core/Button";
 import { DialogTitleProps } from "@material-ui/core/DialogTitle";
-import { AxiosRequestConfig } from "axios";
 import React, { useReducer } from "react";
-import URI from "urijs";
 import { Action, Field } from "../../../gen/siren";
 import EthereumAddressTextField from "../../components/EthereumAddressTextField";
 import TextField from "../../components/TextField";
