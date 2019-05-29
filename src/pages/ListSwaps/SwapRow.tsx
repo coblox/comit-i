@@ -57,6 +57,24 @@ function reducer(state: DialogState, action: ReducerAction) {
   return {};
 }
 
+function openDialog(dialogKey: string): ReducerAction {
+  return {
+    type: "openDialog",
+    payload: {
+      dialogKey
+    }
+  };
+}
+
+function closeDialog(dialogKey: string): ReducerAction {
+  return {
+    type: "closeDialog",
+    payload: {
+      dialogKey
+    }
+  };
+}
+
 function SwapRow({ swap, history }: SwapRowProps) {
   const [dialogState, dispatch] = useReducer(reducer, {});
   const classes = useStyles();
@@ -119,12 +137,7 @@ function SwapRow({ swap, history }: SwapRowProps) {
                 variant={"contained"}
                 onClick={() => {
                   if (action.fields && action.fields.length > 0) {
-                    dispatch({
-                      type: "openDialog",
-                      payload: {
-                        dialogKey: action.name
-                      }
-                    });
+                    dispatch(openDialog(action.name));
                   }
                 }}
               >
@@ -133,24 +146,12 @@ function SwapRow({ swap, history }: SwapRowProps) {
               <Dialog open={dialogState[action.name]}>
                 <SirenActionDialogBody
                   action={action}
-                  onClose={() =>
-                    dispatch({
-                      type: "closeDialog",
-                      payload: {
-                        dialogKey: action.name
-                      }
-                    })
-                  }
+                  onClose={() => dispatch(closeDialog(action.name))}
                   onRequest={request => {
                     // TODO: Actually send the request...
                     // tslint:disable-next-line:no-console
                     console.log(request);
-                    dispatch({
-                      type: "closeDialog",
-                      payload: {
-                        dialogKey: action.name
-                      }
-                    });
+                    dispatch(closeDialog(action.name));
                   }}
                 />
               </Dialog>
