@@ -1,9 +1,10 @@
-import { Button, TableCell, TableRow } from "@material-ui/core";
+import { Button, Dialog, TableCell, TableRow } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import React from "react";
+import React, { useReducer } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { EmbeddedRepresentationSubEntity } from "../../../gen/siren";
 import { Asset, Properties, toMainUnit } from "../../api/swapTypes";
+import SirenActionDialogBody from "./SirenActionDialogBody";
 import SwapStatusIcon from "./SwapStatusIcon";
 
 interface AssetCellProps {
@@ -24,7 +25,40 @@ interface SwapRowProps extends RouteComponentProps {
   swap: EmbeddedRepresentationSubEntity;
 }
 
+// tslint:disable-next-line:interface-over-type-literal
+type ReducerAction = {
+  type: "openDialog" | "closeDialog";
+  payload: {
+    dialogKey: string;
+  };
+};
+
+interface DialogState {
+  [key: string]: boolean;
+}
+
+function reducer(state: DialogState, action: ReducerAction) {
+  switch (action.type) {
+    case "openDialog": {
+      // TODO: close all dialogs if a dialog is opened to be safe
+      return {
+        ...state,
+        [action.payload.dialogKey]: true
+      };
+    }
+    case "closeDialog": {
+      return {
+        ...state,
+        [action.payload.dialogKey]: false
+      };
+    }
+  }
+
+  return {};
+}
+
 function SwapRow({ swap, history }: SwapRowProps) {
+  const [dialogState, dispatch] = useReducer(reducer, {});
   const classes = useStyles();
 
   const links = swap.links || [];
@@ -80,9 +114,47 @@ function SwapRow({ swap, history }: SwapRowProps) {
         <TableCell>{properties.role}</TableCell>
         <TableCell>
           {actions.map(action => (
-            <Button key={action.name} variant={"contained"}>
-              {action.title}
-            </Button>
+            <React.Fragment key={action.name}>
+              <Button
+                variant={"contained"}
+                onClick={() => {
+                  if (action.fields && action.fields.length > 0) {
+                    dispatch({
+                      type: "openDialog",
+                      payload: {
+                        dialogKey: action.name
+                      }
+                    });
+                  }
+                }}
+              >
+                {action.title}
+              </Button>
+              <Dialog open={dialogState[action.name]}>
+                <SirenActionDialogBody
+                  action={action}
+                  onClose={() =>
+                    dispatch({
+                      type: "closeDialog",
+                      payload: {
+                        dialogKey: action.name
+                      }
+                    })
+                  }
+                  onRequest={request => {
+                    // TODO: Actually send the request...
+                    // tslint:disable-next-line:no-console
+                    console.log(request);
+                    dispatch({
+                      type: "closeDialog",
+                      payload: {
+                        dialogKey: action.name
+                      }
+                    });
+                  }}
+                />
+              </Dialog>
+            </React.Fragment>
           ))}
         </TableCell>
       </TableRow>

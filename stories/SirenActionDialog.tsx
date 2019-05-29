@@ -30,8 +30,7 @@ storiesOf("SirenActionDialogBody", module)
                 <ThemeProvider theme={appTheme}>
                     <Button onClick={openDialog(store)}>Trigger action</Button>
 
-                    {/* In the actual application, the rendering will be based on a route! */}
-                    {store.state.open && <Dialog open={true} maxWidth={"sm"} fullWidth={true}>
+                    <Dialog open={store.state.open} maxWidth={"sm"} fullWidth={true}>
                         <SirenActionDialogBody
                             action={{
                                 title: "Accept",
@@ -54,7 +53,7 @@ storiesOf("SirenActionDialogBody", module)
                                 closeDialog(store)()
                             }}
                         />
-                    </Dialog>}
+                    </Dialog>
                 </ThemeProvider>
             </Web3Provider>
         )))
@@ -65,8 +64,7 @@ storiesOf("SirenActionDialogBody", module)
                 <ThemeProvider theme={appTheme}>
                     <Button onClick={openDialog(store)}>Trigger action</Button>
 
-                    {/* In the actual application, the rendering will be based on a route! */}
-                    {store.state.open && <Dialog open={true} maxWidth={"sm"} fullWidth={true}>
+                    <Dialog open={store.state.open} maxWidth={"sm"} fullWidth={true}>
                         <SirenActionDialogBody
                             action={{
                                 title: "Redeem",
@@ -95,7 +93,7 @@ storiesOf("SirenActionDialogBody", module)
                                 closeDialog(store)()
                             }}
                         />
-                    </Dialog>}
+                    </Dialog>
                 </ThemeProvider>
             </Web3Provider>
         )));
