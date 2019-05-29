@@ -4,7 +4,7 @@ import {ThemeProvider} from "@material-ui/styles";
 import {storiesOf} from "@storybook/react";
 import React from "react";
 import {Web3Provider} from "../src/components/Web3Context";
-import SirenActionDialogBody from "../src/pages/ListSwaps/SirenActionDialogBody";
+import SirenActionParametersDialogBody from "../src/pages/ListSwaps/SirenActionParametersDialogBody";
 import appTheme from "../src/theme";
 
 interface DialogStoryState {
@@ -22,7 +22,7 @@ const closeDialog = (store: Store<DialogStoryState>) => () =>
     });
 
 
-storiesOf("SirenActionDialogBody", module)
+storiesOf("SirenActionParametersDialogBody", module)
     .add(
         "Accept action",
         withState({open: false})(({store}) => (
@@ -31,7 +31,7 @@ storiesOf("SirenActionDialogBody", module)
                     <Button onClick={openDialog(store)}>Trigger action</Button>
 
                     <Dialog open={store.state.open} maxWidth={"sm"} fullWidth={true}>
-                        <SirenActionDialogBody
+                        <SirenActionParametersDialogBody
                             action={{
                                 title: "Accept",
                                 method: "POST",
@@ -47,7 +47,7 @@ storiesOf("SirenActionDialogBody", module)
                                 ]
                             }}
                             onClose={closeDialog(store)}
-                            onRequest={(request) => {
+                            onSubmit={(request) => {
                                 // tslint:disable-next-line:no-console
                                 console.log(request);
                                 closeDialog(store)()
@@ -65,7 +65,7 @@ storiesOf("SirenActionDialogBody", module)
                     <Button onClick={openDialog(store)}>Trigger action</Button>
 
                     <Dialog open={store.state.open} maxWidth={"sm"} fullWidth={true}>
-                        <SirenActionDialogBody
+                        <SirenActionParametersDialogBody
                             action={{
                                 title: "Redeem",
                                 method: "GET",
@@ -87,7 +87,7 @@ storiesOf("SirenActionDialogBody", module)
                                 ]
                             }}
                             onClose={closeDialog(store)}
-                            onRequest={(request) => {
+                            onSubmit={(request) => {
                                 // tslint:disable-next-line:no-console
                                 console.log(request);
                                 closeDialog(store)()

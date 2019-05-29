@@ -3,8 +3,9 @@ import { makeStyles } from "@material-ui/styles";
 import React, { useReducer } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { EmbeddedRepresentationSubEntity } from "../../../gen/siren";
+import executeAction from "../../api/executeAction";
 import { Asset, Properties, toMainUnit } from "../../api/swapTypes";
-import SirenActionDialogBody from "./SirenActionDialogBody";
+import SirenActionParametersDialogBody from "./SirenActionParametersDialogBody";
 import SwapStatusIcon from "./SwapStatusIcon";
 
 interface AssetCellProps {
@@ -136,21 +137,23 @@ function SwapRow({ swap, history }: SwapRowProps) {
               <Button
                 variant={"contained"}
                 onClick={() => {
-                  if (action.fields && action.fields.length > 0) {
+                  const fields = action.fields || [];
+
+                  if (fields.length > 0) {
                     dispatch(openDialog(action.name));
+                  } else {
+                    executeAction(action, {});
                   }
                 }}
               >
                 {action.title}
               </Button>
               <Dialog open={dialogState[action.name]}>
-                <SirenActionDialogBody
+                <SirenActionParametersDialogBody
                   action={action}
                   onClose={() => dispatch(closeDialog(action.name))}
-                  onRequest={request => {
-                    // TODO: Actually send the request...
-                    // tslint:disable-next-line:no-console
-                    console.log(request);
+                  onSubmit={data => {
+                    executeAction(action, data);
                     dispatch(closeDialog(action.name));
                   }}
                 />

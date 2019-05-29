@@ -16,13 +16,16 @@ import TextField from "../../components/TextField";
 interface Props {
   action: Action;
   onClose: () => void;
-  onRequest: (request: AxiosRequestConfig) => void;
+  onSubmit: (parameters: any) => void;
 }
 
-export default function SirenActionDialogBody({
+/*
+ * A component to be placed into a Dialog to gather all necessary parameters from the user for executing the given action.
+ */
+export default function SirenActionParametersDialogBody({
   action,
   onClose,
-  onRequest
+  onSubmit
 }: Props) {
   const method = action.method || "GET";
   const title = action.title || action.name;
@@ -49,9 +52,7 @@ export default function SirenActionDialogBody({
       <form
         onSubmit={event => {
           event.preventDefault();
-          const request = actionToRequest(action, actionPayload);
-
-          onRequest(request);
+          onSubmit(actionPayload);
         }}
       >
         <DialogContent>{formFields}</DialogContent>
@@ -166,21 +167,5 @@ function PrimaryActionButton({
           {`Execute ${title}`}
         </Button>
       );
-  }
-}
-
-function actionToRequest(action: Action, data: any): AxiosRequestConfig {
-  const method = action.method || "GET";
-  if (method === "GET") {
-    return {
-      method,
-      url: new URI(action.href).query(URI.buildQuery(data)).toString()
-    };
-  } else {
-    return {
-      method,
-      url: action.href,
-      data
-    };
   }
 }
