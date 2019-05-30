@@ -50,7 +50,6 @@
           "title": "Redeem",
           "method": "GET",
           "href": "/swaps/rfc003/e94132f9-4269-49b8-86e4-9fd0bcc48c4b/redeem",
-          "type": "application/json",
           "fields": []
         }
       ],
