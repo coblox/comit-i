@@ -127,6 +127,9 @@ function SwapRow({ swap, history }: SwapRowProps) {
         ) {
           const ledgerAction = data as LedgerAction;
           dispatch(openLedgerActionDialog(ledgerAction));
+        } else {
+          // TODO: replace this with just fetching the swaps instead of reloading the whole page
+          window.location.reload();
         }
 
         setActionExecutionState(ActionExecutionState.Done);
@@ -176,10 +179,9 @@ function SwapRow({ swap, history }: SwapRowProps) {
             actionButtons
           )}
         </TableCell>
-
-        {sirenActionDialog}
-        {ledgerActionDialog}
       </TableRow>
+      {sirenActionDialog}
+      {ledgerActionDialog}
     </React.Fragment>
   );
 }

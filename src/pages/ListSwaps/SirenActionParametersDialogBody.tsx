@@ -55,8 +55,19 @@ export default function SirenActionParametersDialogBody({
       >
         <DialogContent>{formFields}</DialogContent>
         <DialogActions>
-          <PrimaryActionButton method={method} title={title} type={"submit"} />
-          <Button variant={"contained"} color={"secondary"} onClick={onClose}>
+          <PrimaryActionButton
+            method={method}
+            title={title}
+            type={"submit"}
+            data-cy={`${action.name}-button`}
+          />
+          <Button
+            type={"button"}
+            variant={"contained"}
+            color={"secondary"}
+            onClick={onClose}
+            data-cy={"close-button"}
+          >
             Close
           </Button>
         </DialogActions>
@@ -73,6 +84,7 @@ function renderField(
   if (field.class.includes("ethereum") && field.class.includes("address")) {
     return (
       <EthereumAddressTextField
+        data-cy={"action-text-field"}
         required={true}
         key={field.name}
         label={field.title}
@@ -85,6 +97,7 @@ function renderField(
 
   return (
     <TextField
+      data-cy={"action-text-field"}
       required={true}
       key={field.name}
       label={field.title}
