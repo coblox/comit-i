@@ -1,7 +1,6 @@
 import {
   Button,
   CircularProgress,
-  Dialog,
   TableCell,
   TableRow
 } from "@material-ui/core";
@@ -12,6 +11,7 @@ import { Action, EmbeddedRepresentationSubEntity } from "../../../gen/siren";
 import executeAction from "../../api/executeAction";
 import { LedgerAction } from "../../api/getAction";
 import { Asset, Properties, toMainUnit } from "../../api/swapTypes";
+import Dialog from "../../components/Dialog";
 import LedgerActionDialogBody from "./LedgerActionDialogBody";
 import SirenActionParametersDialogBody from "./SirenActionParametersDialogBody";
 import SwapStatusIcon from "./SwapStatusIcon";
@@ -71,10 +71,12 @@ function SwapRow({ swap, history }: SwapRowProps) {
 
   const actionButtons = actions.map(action => (
     <Button
+      data-cy={`${action.name}-button`}
       type={"button"}
       key={action.name}
       variant={"contained"}
-      onClick={() => {
+      onClick={e => {
+        e.stopPropagation();
         const fields = action.fields || [];
 
         if (fields.length > 0) {
