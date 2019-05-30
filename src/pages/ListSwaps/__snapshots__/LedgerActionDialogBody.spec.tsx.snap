@@ -1,0 +1,744 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LedgerActionDialogBody renders bitcoin-broadcast-signed-transaction correctly 1`] = `
+Array [
+  <div
+    className="MuiDialogTitle-root"
+  >
+    <h6
+      className="MuiTypography-root MuiTypography-h6"
+    >
+      Broadcast Bitcoin transaction
+    </h6>
+  </div>,
+  <div
+    className="MuiDialogContent-root"
+  >
+    <p
+      className="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"
+    >
+      Please broadcast the following signed transaction on the
+       
+      <b>
+        regtest
+      </b>
+       network 
+      when the latest block's mediantime is past 1557508315
+      :
+    </p>
+    <p
+      className="MuiTypography-root MuiTypography-body1"
+      style={
+        Object {
+          "wordWrap": "break-word",
+        }
+      }
+    >
+      01000000013ea2097dbb3bf6932b97d2469b4fa78e28a2e8d05c586affe9c8cb66dba52543000000008a47304402206f40f4eb8c6cab7c6dd45a132d437e736a6a0dddfb2b78b10e6efbcaf61592f602200d329a57d7a0c969cc349f41852da4ba1a3bc2245e656bdd41780455b97bf84a014104aa49fbe6608076318ff09171e3c2b4a2effa52d53a417371140642996693ae3ac53ce300fff7fef650d0a2418b087a237aa6838eed3bdfad0ec0069df7209f4affffffff0190d60200000000001976a91401ddbca1a39b60b54fb671297a4a20a7681e017188ac00000000
+    </p>
+  </div>,
+  <div
+    className="MuiDialogActions-root MuiDialogActions-spacing"
+  >
+    <button
+      aria-describedby={null}
+      className="MuiButtonBase-root MuiButton-root MuiButton-textPrimary MuiButton-text"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      title={null}
+      type="button"
+    >
+      <span
+        className="MuiButton-label"
+      >
+        <svg
+          aria-hidden="true"
+          className="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
+          focusable="false"
+          role="presentation"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M0 0h24v24H0z"
+            fill="none"
+          />
+          <path
+            d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm-1 4l6 6v10c0 1.1-.9 2-2 2H7.99C6.89 23 6 22.1 6 21l.01-14c0-1.1.89-2 1.99-2h7zm-1 7h5.5L14 6.5V12z"
+          />
+        </svg>
+        Copy transaction to clipboard
+      </span>
+      <span
+        className="MuiTouchRipple-root"
+      />
+    </button>
+    <button
+      className="MuiButtonBase-root MuiButton-root MuiButton-textSecondary MuiButton-text"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className="MuiButton-label"
+      >
+        Close
+      </span>
+      <span
+        className="MuiTouchRipple-root"
+      />
+    </button>
+  </div>,
+]
+`;
+
+exports[`LedgerActionDialogBody renders bitcoin-send-to-address correctly 1`] = `
+Array [
+  <div
+    className="MuiDialogTitle-root"
+  >
+    <h6
+      className="MuiTypography-root MuiTypography-h6"
+    >
+      Send Bitcoin
+    </h6>
+  </div>,
+  <div
+    className="MuiDialogContent-root"
+  >
+    <p
+      className="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"
+    >
+      Please send 
+      <b>
+        100000000
+      </b>
+       satoshi to the following 
+      <b>
+        regtest
+      </b>
+       address:
+    </p>
+    bcrt1q4vmcukhvmd2lajgk9az24s3fndm4swrkl633lq
+  </div>,
+  <div
+    className="MuiDialogActions-root MuiDialogActions-spacing"
+  >
+    <button
+      aria-describedby={null}
+      className="MuiButtonBase-root MuiButton-root MuiButton-textPrimary MuiButton-text"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      title={null}
+      type="button"
+    >
+      <span
+        className="MuiButton-label"
+      >
+        <svg
+          aria-hidden="true"
+          className="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
+          focusable="false"
+          role="presentation"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M0 0h24v24H0z"
+            fill="none"
+          />
+          <path
+            d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm-1 4l6 6v10c0 1.1-.9 2-2 2H7.99C6.89 23 6 22.1 6 21l.01-14c0-1.1.89-2 1.99-2h7zm-1 7h5.5L14 6.5V12z"
+          />
+        </svg>
+        Copy amount to clipboard
+      </span>
+      <span
+        className="MuiTouchRipple-root"
+      />
+    </button>
+    <button
+      aria-describedby={null}
+      className="MuiButtonBase-root MuiButton-root MuiButton-textPrimary MuiButton-text"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      title={null}
+      type="button"
+    >
+      <span
+        className="MuiButton-label"
+      >
+        <svg
+          aria-hidden="true"
+          className="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
+          focusable="false"
+          role="presentation"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M0 0h24v24H0z"
+            fill="none"
+          />
+          <path
+            d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm-1 4l6 6v10c0 1.1-.9 2-2 2H7.99C6.89 23 6 22.1 6 21l.01-14c0-1.1.89-2 1.99-2h7zm-1 7h5.5L14 6.5V12z"
+          />
+        </svg>
+        Copy address to clipboard
+      </span>
+      <span
+        className="MuiTouchRipple-root"
+      />
+    </button>
+    <button
+      className="MuiButtonBase-root MuiButton-root MuiButton-textSecondary MuiButton-text"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className="MuiButton-label"
+      >
+        Close
+      </span>
+      <span
+        className="MuiTouchRipple-root"
+      />
+    </button>
+  </div>,
+]
+`;
+
+exports[`LedgerActionDialogBody renders ethereum-call-contract correctly 1`] = `
+Array [
+  <div
+    className="MuiDialogTitle-root"
+  >
+    <h6
+      className="MuiTypography-root MuiTypography-h6"
+    >
+      Invoke Ethereum contract
+    </h6>
+  </div>,
+  <div
+    className="MuiDialogContent-root"
+  >
+    <p
+      className="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"
+    >
+      Invoke the contract at 
+      <b>
+        0x1189128ff5573f6282dbbf1557ed839dab277aeb
+      </b>
+       on the Ethereum 
+      <b>
+        regtest
+      </b>
+       network with this data:
+    </p>
+    <p
+      className="MuiTypography-root MuiTypography-body1"
+      style={
+        Object {
+          "wordWrap": "break-word",
+        }
+      }
+    >
+      0x
+    </p>
+  </div>,
+  <div
+    className="MuiDialogActions-root MuiDialogActions-spacing"
+  >
+    <span
+      aria-describedby={null}
+      className=""
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      title="Please enable Metamask first."
+    >
+      <button
+        className="MuiButtonBase-root MuiButton-root MuiButton-textPrimary MuiButton-text Mui-disabled Mui-disabled"
+        disabled={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={-1}
+        type="button"
+      >
+        <span
+          className="MuiButton-label"
+        >
+          Send transaction  
+          <svg
+            aria-hidden="true"
+            className="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 318.6 318.6"
+          >
+            <polygon
+              className="makeStyles-st0-83"
+              points="274.1,35.5 174.6,109.4 193,65.8 "
+            />
+            <g>
+              <polygon
+                className="makeStyles-st1-84"
+                points="44.4,35.5 143.1,110.1 125.6,65.8"
+              />
+              <polygon
+                className="makeStyles-st1-84"
+                points="238.3,206.8 211.8,247.4 268.5,263 284.8,207.7"
+              />
+              <polygon
+                className="makeStyles-st1-84"
+                points="33.9,207.7 50.1,263 106.8,247.4 80.3,206.8"
+              />
+              <polygon
+                className="makeStyles-st1-84"
+                points="103.6,138.2 87.8,162.1 144.1,164.6 142.1,104.1"
+              />
+              <polygon
+                className="makeStyles-st1-84"
+                points="214.9,138.2 175.9,103.4 174.6,164.6 230.8,162.1"
+              />
+              <polygon
+                className="makeStyles-st1-84"
+                points="106.8,247.4 140.6,230.9 111.4,208.1"
+              />
+              <polygon
+                className="makeStyles-st1-84"
+                points="177.9,230.9 211.8,247.4 207.1,208.1"
+              />
+            </g>
+            <g>
+              <polygon
+                className="makeStyles-st2-85"
+                points="211.8,247.4 177.9,230.9 180.6,253 180.3,262.3"
+              />
+              <polygon
+                className="makeStyles-st2-85"
+                points="106.8,247.4 138.3,262.3 138.1,253 140.6,230.9"
+              />
+            </g>
+            <polygon
+              className="makeStyles-st3-86"
+              points="138.8,193.5 110.6,185.2 130.5,176.1 "
+            />
+            <polygon
+              className="makeStyles-st3-86"
+              points="179.7,193.5 188,176.1 208,185.2 "
+            />
+            <g>
+              <polygon
+                className="makeStyles-st4-87"
+                points="106.8,247.4 111.6,206.8 80.3,207.7"
+              />
+              <polygon
+                className="makeStyles-st4-87"
+                points="207,206.8 211.8,247.4 238.3,207.7"
+              />
+              <polygon
+                className="makeStyles-st4-87"
+                points="230.8,162.1 174.6,164.6 179.8,193.5 188.1,176.1 208.1,185.2"
+              />
+              <polygon
+                className="makeStyles-st4-87"
+                points="110.6,185.2 130.6,176.1 138.8,193.5 144.1,164.6 87.8,162.1"
+              />
+            </g>
+            <g>
+              <polygon
+                className="makeStyles-st5-88"
+                points="87.8,162.1 111.4,208.1 110.6,185.2"
+              />
+              <polygon
+                className="makeStyles-st5-88"
+                points="208.1,185.2 207.1,208.1 230.8,162.1"
+              />
+              <polygon
+                className="makeStyles-st5-88"
+                points="144.1,164.6 138.8,193.5 145.4,227.6 146.9,182.7"
+              />
+              <polygon
+                className="makeStyles-st5-88"
+                points="174.6,164.6 171.9,182.6 173.1,227.6 179.8,193.5"
+              />
+            </g>
+            <polygon
+              className="makeStyles-st6-89"
+              points="179.8,193.5 173.1,227.6 177.9,230.9 207.1,208.1 208.1,185.2 "
+            />
+            <polygon
+              className="makeStyles-st6-89"
+              points="110.6,185.2 111.4,208.1 140.6,230.9 145.4,227.6 138.8,193.5 "
+            />
+            <polygon
+              className="makeStyles-st7-90"
+              points="180.3,262.3 180.6,253 178.1,250.8 140.4,250.8 138.1,253 138.3,262.3 106.8,247.4 117.8,256.4 140.1,271.9 178.4,271.9 200.8,256.4 211.8,247.4 "
+            />
+            <polygon
+              className="makeStyles-st8-91"
+              points="177.9,230.9 173.1,227.6 145.4,227.6 140.6,230.9 138.1,253 140.4,250.8 178.1,250.8 180.6,253 "
+            />
+            <g>
+              <polygon
+                className="makeStyles-st9-92"
+                points="278.3,114.2 286.8,73.4 274.1,35.5 177.9,106.9 214.9,138.2 267.2,153.5 278.8,140 273.8,136.4 281.8,129.1 275.6,124.3 283.6,118.2"
+              />
+              <polygon
+                className="makeStyles-st9-92"
+                points="31.8,73.4 40.3,114.2 34.9,118.2 42.9,124.3 36.8,129.1 44.8,136.4 39.8,140 51.3,153.5 103.6,138.2 140.6,106.9 44.4,35.5"
+              />
+            </g>
+            <polygon
+              className="makeStyles-st6-89"
+              points="267.2,153.5 214.9,138.2 230.8,162.1 207.1,208.1 238.3,207.7 284.8,207.7 "
+            />
+            <polygon
+              className="makeStyles-st6-89"
+              points="103.6,138.2 51.3,153.5 33.9,207.7 80.3,207.7 111.4,208.1 87.8,162.1 "
+            />
+            <polygon
+              className="makeStyles-st6-89"
+              points="174.6,164.6 177.9,106.9 193.1,65.8 125.6,65.8 140.6,106.9 144.1,164.6 145.3,182.8 145.4,227.6 173.1,227.6 173.3,182.8 "
+            />
+          </svg>
+        </span>
+      </button>
+    </span>
+    <button
+      className="MuiButtonBase-root MuiButton-root MuiButton-textSecondary MuiButton-text"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className="MuiButton-label"
+      >
+        Close
+      </span>
+      <span
+        className="MuiTouchRipple-root"
+      />
+    </button>
+  </div>,
+]
+`;
+
+exports[`LedgerActionDialogBody renders ethereum-deploy-contract correctly 1`] = `
+Array [
+  <div
+    className="MuiDialogTitle-root"
+  >
+    <h6
+      className="MuiTypography-root MuiTypography-h6"
+    >
+      Deploy Ethereum contract
+    </h6>
+  </div>,
+  <div
+    className="MuiDialogContent-root"
+  >
+    <p
+      className="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"
+    >
+      Deploy the following contract to the Ethereum
+       
+      <b>
+        regtest
+      </b>
+       network with
+       
+      <b>
+        111111111111111111111
+      </b>
+       wei:
+    </p>
+    <p
+      className="MuiTypography-root MuiTypography-body1"
+      style={
+        Object {
+          "wordWrap": "break-word",
+        }
+      }
+    >
+      0x6100dc61000f6000396100dc6000f336156051576020361415605c57602060006000376020602160206000600060026048f17f57dd4f2557f4b1d593554932a25ce4180c033a8e370632f351ff33f5a5f1973e602151141660625760006000f35b42635cd5aa6a10609f575b60006000f35b7fb8cac300e37f03ad332e581dea21b2f0b84eaaadc184a295fef71e81f44a741360206000a173493a5a0eafdeae28f430f74ac5031b3ee37b6a6dff5b7f5d26862916391bf49478b2f5103b0720a842b45ef145a268f2cd1fb2aed5517860006000a173493a5a0eafdeae28f430f74ac5031b3ee37b6a6dff
+    </p>
+  </div>,
+  <div
+    className="MuiDialogActions-root MuiDialogActions-spacing"
+  >
+    <span
+      aria-describedby={null}
+      className=""
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      title="Please enable Metamask first."
+    >
+      <button
+        className="MuiButtonBase-root MuiButton-root MuiButton-textPrimary MuiButton-text Mui-disabled Mui-disabled"
+        disabled={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={-1}
+        type="button"
+      >
+        <span
+          className="MuiButton-label"
+        >
+          Send transaction  
+          <svg
+            aria-hidden="true"
+            className="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 318.6 318.6"
+          >
+            <polygon
+              className="makeStyles-st0-83"
+              points="274.1,35.5 174.6,109.4 193,65.8 "
+            />
+            <g>
+              <polygon
+                className="makeStyles-st1-84"
+                points="44.4,35.5 143.1,110.1 125.6,65.8"
+              />
+              <polygon
+                className="makeStyles-st1-84"
+                points="238.3,206.8 211.8,247.4 268.5,263 284.8,207.7"
+              />
+              <polygon
+                className="makeStyles-st1-84"
+                points="33.9,207.7 50.1,263 106.8,247.4 80.3,206.8"
+              />
+              <polygon
+                className="makeStyles-st1-84"
+                points="103.6,138.2 87.8,162.1 144.1,164.6 142.1,104.1"
+              />
+              <polygon
+                className="makeStyles-st1-84"
+                points="214.9,138.2 175.9,103.4 174.6,164.6 230.8,162.1"
+              />
+              <polygon
+                className="makeStyles-st1-84"
+                points="106.8,247.4 140.6,230.9 111.4,208.1"
+              />
+              <polygon
+                className="makeStyles-st1-84"
+                points="177.9,230.9 211.8,247.4 207.1,208.1"
+              />
+            </g>
+            <g>
+              <polygon
+                className="makeStyles-st2-85"
+                points="211.8,247.4 177.9,230.9 180.6,253 180.3,262.3"
+              />
+              <polygon
+                className="makeStyles-st2-85"
+                points="106.8,247.4 138.3,262.3 138.1,253 140.6,230.9"
+              />
+            </g>
+            <polygon
+              className="makeStyles-st3-86"
+              points="138.8,193.5 110.6,185.2 130.5,176.1 "
+            />
+            <polygon
+              className="makeStyles-st3-86"
+              points="179.7,193.5 188,176.1 208,185.2 "
+            />
+            <g>
+              <polygon
+                className="makeStyles-st4-87"
+                points="106.8,247.4 111.6,206.8 80.3,207.7"
+              />
+              <polygon
+                className="makeStyles-st4-87"
+                points="207,206.8 211.8,247.4 238.3,207.7"
+              />
+              <polygon
+                className="makeStyles-st4-87"
+                points="230.8,162.1 174.6,164.6 179.8,193.5 188.1,176.1 208.1,185.2"
+              />
+              <polygon
+                className="makeStyles-st4-87"
+                points="110.6,185.2 130.6,176.1 138.8,193.5 144.1,164.6 87.8,162.1"
+              />
+            </g>
+            <g>
+              <polygon
+                className="makeStyles-st5-88"
+                points="87.8,162.1 111.4,208.1 110.6,185.2"
+              />
+              <polygon
+                className="makeStyles-st5-88"
+                points="208.1,185.2 207.1,208.1 230.8,162.1"
+              />
+              <polygon
+                className="makeStyles-st5-88"
+                points="144.1,164.6 138.8,193.5 145.4,227.6 146.9,182.7"
+              />
+              <polygon
+                className="makeStyles-st5-88"
+                points="174.6,164.6 171.9,182.6 173.1,227.6 179.8,193.5"
+              />
+            </g>
+            <polygon
+              className="makeStyles-st6-89"
+              points="179.8,193.5 173.1,227.6 177.9,230.9 207.1,208.1 208.1,185.2 "
+            />
+            <polygon
+              className="makeStyles-st6-89"
+              points="110.6,185.2 111.4,208.1 140.6,230.9 145.4,227.6 138.8,193.5 "
+            />
+            <polygon
+              className="makeStyles-st7-90"
+              points="180.3,262.3 180.6,253 178.1,250.8 140.4,250.8 138.1,253 138.3,262.3 106.8,247.4 117.8,256.4 140.1,271.9 178.4,271.9 200.8,256.4 211.8,247.4 "
+            />
+            <polygon
+              className="makeStyles-st8-91"
+              points="177.9,230.9 173.1,227.6 145.4,227.6 140.6,230.9 138.1,253 140.4,250.8 178.1,250.8 180.6,253 "
+            />
+            <g>
+              <polygon
+                className="makeStyles-st9-92"
+                points="278.3,114.2 286.8,73.4 274.1,35.5 177.9,106.9 214.9,138.2 267.2,153.5 278.8,140 273.8,136.4 281.8,129.1 275.6,124.3 283.6,118.2"
+              />
+              <polygon
+                className="makeStyles-st9-92"
+                points="31.8,73.4 40.3,114.2 34.9,118.2 42.9,124.3 36.8,129.1 44.8,136.4 39.8,140 51.3,153.5 103.6,138.2 140.6,106.9 44.4,35.5"
+              />
+            </g>
+            <polygon
+              className="makeStyles-st6-89"
+              points="267.2,153.5 214.9,138.2 230.8,162.1 207.1,208.1 238.3,207.7 284.8,207.7 "
+            />
+            <polygon
+              className="makeStyles-st6-89"
+              points="103.6,138.2 51.3,153.5 33.9,207.7 80.3,207.7 111.4,208.1 87.8,162.1 "
+            />
+            <polygon
+              className="makeStyles-st6-89"
+              points="174.6,164.6 177.9,106.9 193.1,65.8 125.6,65.8 140.6,106.9 144.1,164.6 145.3,182.8 145.4,227.6 173.1,227.6 173.3,182.8 "
+            />
+          </svg>
+        </span>
+      </button>
+    </span>
+    <button
+      className="MuiButtonBase-root MuiButton-root MuiButton-textSecondary MuiButton-text"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className="MuiButton-label"
+      >
+        Close
+      </span>
+      <span
+        className="MuiTouchRipple-root"
+      />
+    </button>
+  </div>,
+]
+`;
