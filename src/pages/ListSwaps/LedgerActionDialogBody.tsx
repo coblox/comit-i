@@ -19,11 +19,6 @@ function LedgerActionDialogBody({
   onClose,
   action
 }: LedgerActionDialogBodyProps) {
-  function onSuccess() {
-    onClose();
-    window.location.reload();
-  }
-
   switch (action.type) {
     case "bitcoin-broadcast-signed-transaction": {
       const expiry = action.payload.min_median_block_time;
@@ -110,7 +105,7 @@ function LedgerActionDialogBody({
                 value: action.payload.amount,
                 gas: +action.payload.gas_limit
               }}
-              onSuccess={onSuccess}
+              onSuccess={onClose}
             />
             <Button onClick={onClose} color="secondary">
               Close
@@ -148,7 +143,7 @@ function LedgerActionDialogBody({
                 data: action.payload.data,
                 gas: action.payload.gas_limit
               }}
-              onSuccess={onSuccess}
+              onSuccess={onClose}
             />
             <Button onClick={onClose} color="secondary">
               Close

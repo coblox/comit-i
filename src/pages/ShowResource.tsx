@@ -16,11 +16,10 @@ const getComitResourceFn = async ({ resourcePath }: any) => {
 function ShowResource({ location }: RouteComponentProps) {
   const resourcePath = location.pathname.replace("/show_resource/", "");
 
-  const { data: entity, isLoading, error } = useAsync({
-    promiseFn: getComitResourceFn,
-    resourcePath,
-    watch: location.pathname
-  });
+  const { data: entity, isLoading, error, reload } = useAsync(
+    getComitResourceFn,
+    { resourcePath }
+  );
 
   if (isLoading) {
     return <CenteredProgress title="Fetching..." />;
@@ -31,7 +30,10 @@ function ShowResource({ location }: RouteComponentProps) {
     entity.class.includes("swaps")
   ) {
     return (
-      <SwapList swaps={entity.entities as EmbeddedRepresentationSubEntity[]} />
+      <SwapList
+        swaps={entity.entities as EmbeddedRepresentationSubEntity[]}
+        reload={reload}
+      />
     );
   } else if (
     !error &&

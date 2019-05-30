@@ -39,9 +39,10 @@ enum ActionExecutionState {
 
 interface SwapRowProps extends RouteComponentProps {
   swap: EmbeddedRepresentationSubEntity;
+  reload: () => void;
 }
 
-function SwapRow({ swap, history }: SwapRowProps) {
+function SwapRow({ swap, history, reload }: SwapRowProps) {
   const [
     { activeSirenParameterDialog, activeLedgerActionDialog },
     dispatch
@@ -107,7 +108,10 @@ function SwapRow({ swap, history }: SwapRowProps) {
     <Dialog open={true}>
       <LedgerActionDialogBody
         action={activeLedgerActionDialog}
-        onClose={() => dispatch(closeLedgerActionDialog())}
+        onClose={() => {
+          dispatch(closeLedgerActionDialog());
+          reload();
+        }}
       />
     </Dialog>
   ) : null;
@@ -128,8 +132,7 @@ function SwapRow({ swap, history }: SwapRowProps) {
           const ledgerAction = data as LedgerAction;
           dispatch(openLedgerActionDialog(ledgerAction));
         } else {
-          // TODO: replace this with just fetching the swaps instead of reloading the whole page
-          window.location.reload();
+          reload();
         }
 
         setActionExecutionState(ActionExecutionState.Done);
