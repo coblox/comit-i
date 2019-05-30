@@ -25,7 +25,7 @@ function ExplorerLink({ ledger, hash, resourceType }: ExplorerLinkProps) {
 
     return (
       <Typography noWrap={true}>
-        <a target="_blank" href={url + hash}>
+        <a target="_blank" rel="noopener noreferrer" href={url + hash}>
           {hash}
         </a>
       </Typography>
