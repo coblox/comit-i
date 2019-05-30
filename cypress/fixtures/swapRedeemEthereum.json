@@ -1,0 +1,64 @@
+{
+  "class": ["swaps"],
+  "properties": null,
+  "entities": [
+    {
+      "class": ["swap"],
+      "properties": {
+        "parameters": {
+          "alpha_asset": {
+            "name": "bitcoin",
+            "quantity": "100000000"
+          },
+          "alpha_ledger": {
+            "name": "bitcoin",
+            "network": "regtest"
+          },
+          "beta_asset": {
+            "name": "ether",
+            "quantity": "1000000000000000000"
+          },
+          "beta_ledger": {
+            "name": "ethereum",
+            "network": "regtest"
+          }
+        },
+        "protocol": "rfc003",
+        "role": "Alice",
+        "status": "IN_PROGRESS"
+      },
+      "entities": [],
+      "links": [
+        {
+          "rel": [
+            "self"
+          ],
+          "class": [],
+          "href": "/swaps/rfc003/e94132f9-4269-49b8-86e4-9fd0bcc48c4b"
+        },
+        {
+          "rel": [
+            "human-protocol-spec"
+          ],
+          "class": [],
+          "href": "https://github.com/comit-network/RFCs/blob/master/RFC-003-SWAP-Basic.md"
+        }
+      ],
+      "actions": [
+        {
+          "name": "redeem",
+          "title": "Redeem",
+          "method": "GET",
+          "href": "/swaps/rfc003/e94132f9-4269-49b8-86e4-9fd0bcc48c4b/redeem",
+          "type": "application/json",
+          "fields": []
+        }
+      ],
+      "rel": [
+        "item"
+      ]
+    }
+  ],
+  "links": [],
+  "actions": []
+}

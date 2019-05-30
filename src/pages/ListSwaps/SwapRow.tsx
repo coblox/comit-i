@@ -5,6 +5,8 @@ import {
   TableRow
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
+import { AxiosResponse } from "axios";
+import ContentType from "content-type";
 import React, { useReducer, useState } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { Action, EmbeddedRepresentationSubEntity } from "../../../gen/siren";
@@ -40,6 +42,14 @@ enum ActionExecutionState {
 interface SwapRowProps extends RouteComponentProps {
   swap: EmbeddedRepresentationSubEntity;
   reload: () => void;
+}
+
+function isMediaTypeApplicationJson(response: AxiosResponse) {
+  try {
+    return ContentType.parse(response).type === "application/json";
+  } catch (e) {
+    return false;
+  }
 }
 
 function SwapRow({ swap, history, reload }: SwapRowProps) {
@@ -121,11 +131,10 @@ function SwapRow({ swap, history, reload }: SwapRowProps) {
     executeAction(sirenAction, data)
       .then(response => {
         const data = response.data;
-        const contentType = response.headers["content-type"];
 
         if (
           data &&
-          contentType === "application/json" &&
+          isMediaTypeApplicationJson(response) &&
           data.type &&
           data.payload
         ) {
@@ -177,7 +186,10 @@ function SwapRow({ swap, history, reload }: SwapRowProps) {
         <TableCell>{properties.role}</TableCell>
         <TableCell>
           {actionExecutionState === ActionExecutionState.InProgress ? (
-            <CircularProgress size={"small"} />
+            <CircularProgress
+              size={30}
+              data-cy={"action-request-circular-progress"}
+            />
           ) : (
             actionButtons
           )}

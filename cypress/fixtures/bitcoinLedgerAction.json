@@ -1,0 +1,8 @@
+{
+  "type": "bitcoin-broadcast-signed-transaction",
+  "payload": {
+    "hex": "raw_transaction",
+    "network": "1",
+    "min_median_block_time": "1"
+  }
+}
