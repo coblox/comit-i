@@ -1,6 +1,8 @@
+import { AxiosResponse } from "axios";
 import { Action } from "../../../../gen/siren";
 import {
   actionButtonClicked,
+  actionSuccessful,
   closeLedgerActionDialog,
   sirenParameterDialogSubmitted
 } from "./events";
@@ -106,5 +108,52 @@ describe("SwapRowReducer", () => {
     expect(sideEffect).toStrictEqual({
       type: "reloadData"
     });
+  });
+
+  it("should open ledger action dialog if response contains ledger action", () => {
+    const response = {
+      data: {
+        type: "ethereum-call-contract",
+        payload: {} as any
+      },
+      headers: {
+        "content-type": "application/json; charset=utf-8"
+      },
+      status: 200,
+      statusText: "OK"
+    } as AxiosResponse;
+
+    const { state, sideEffect } = reducer(
+      initialState,
+      actionSuccessful(response)
+    );
+
+    expect(state).toStrictEqual({
+      actionExecutionStatus: ActionExecutionStatus.Done,
+      activeLedgerActionDialog: {
+        type: "ethereum-call-contract",
+        payload: {}
+      }
+    });
+    expect(sideEffect).toBeUndefined();
+  });
+
+  it("should not open any dialog if response is not a ledger action", () => {
+    const response = {
+      data: {},
+      headers: {},
+      status: 200,
+      statusText: "OK"
+    } as AxiosResponse;
+
+    const { state, sideEffect } = reducer(
+      initialState,
+      actionSuccessful(response)
+    );
+
+    expect(state).toStrictEqual({
+      actionExecutionStatus: ActionExecutionStatus.Done
+    });
+    expect(sideEffect).toBeUndefined();
   });
 });
