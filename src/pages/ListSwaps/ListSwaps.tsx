@@ -8,7 +8,7 @@ import {
 import React from "react";
 import { EmbeddedRepresentationSubEntity } from "../../../gen/siren";
 import EmptySwapListTableRow from "./EmptySwapListTableRow";
-import SwapRow from "./SwapRow";
+import SwapRow from "./SwapRow/SwapRow";
 
 interface SwapListProps {
   swaps: EmbeddedRepresentationSubEntity[];
