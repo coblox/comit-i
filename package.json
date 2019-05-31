@@ -73,7 +73,7 @@
     "postinstall": "yarn run gen",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --passWithNoTests",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "tslint -p .",
     "prettier": "prettier --check '{src,cypress,public}/**/*.{js,jsx,css,ts,tsx,html}' '*.json' '*.yml'",

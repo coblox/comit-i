@@ -22,13 +22,12 @@ type SideEffect =
     };
 
 interface State {
-  actionExecutionStatus: ActionExecutionStatus;
+  actionExecutionStatus?: ActionExecutionStatus;
   activeSirenParameterDialog?: Action;
   activeLedgerActionDialog?: LedgerAction;
 }
 
 export enum ActionExecutionStatus {
-  Idle,
   InProgress,
   Done,
   Error
@@ -46,7 +45,6 @@ export function reducer(
       if (fields.length > 0) {
         return {
           state: {
-            actionExecutionStatus: ActionExecutionStatus.Idle,
             activeSirenParameterDialog: action
           }
         };
@@ -116,7 +114,14 @@ export function reducer(
       };
     }
 
-    case "closeLedgerActionDialog":
+    case "closeLedgerActionDialog": {
+      return {
+        state: {},
+        sideEffect: {
+          type: "reloadData"
+        }
+      };
+    }
     case "closeSirenParametersDialog":
       return initialState;
   }
@@ -133,7 +138,5 @@ function isMediaTypeApplicationJson(response: AxiosResponse) {
 }
 
 export const initialState: ReducerState = {
-  state: {
-    actionExecutionStatus: ActionExecutionStatus.Idle
-  }
+  state: {}
 };
