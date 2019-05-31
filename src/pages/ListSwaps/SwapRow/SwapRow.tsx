@@ -11,6 +11,7 @@ import { EmbeddedRepresentationSubEntity } from "../../../../gen/siren";
 import executeAction from "../../../api/executeAction";
 import { Asset, Properties, toMainUnit } from "../../../api/swapTypes";
 import Dialog from "../../../components/Dialog";
+import ExternalLink from "../../../components/ExternalLink";
 import LedgerActionDialogBody from "../LedgerActionDialogBody";
 import SirenActionParametersDialogBody from "../SirenActionParametersDialogBody";
 import SwapStatusIcon from "../SwapStatusIcon";
@@ -114,14 +115,10 @@ function SwapRow({ swap, history, reload }: SwapRowProps) {
         </TableCell>
         <TableCell>
           {protocolSpecLink ? (
-            <a
-              onClick={e => e.stopPropagation()}
-              target="_blank"
-              rel="noopener noreferrer"
+            <ExternalLink
               href={protocolSpecLink.href}
-            >
-              {properties.protocol}
-            </a>
+              text={properties.protocol}
+            />
           ) : (
             properties.protocol
           )}

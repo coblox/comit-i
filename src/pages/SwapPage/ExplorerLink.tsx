@@ -1,6 +1,7 @@
 import { Typography } from "@material-ui/core";
 import React from "react";
 import { Ledger } from "../../api/swapTypes";
+import ExternalLink from "../../components/ExternalLink";
 
 export enum ResourceType {
   Transaction,
@@ -25,9 +26,7 @@ function ExplorerLink({ ledger, hash, resourceType }: ExplorerLinkProps) {
 
     return (
       <Typography noWrap={true}>
-        <a target="_blank" rel="noopener noreferrer" href={url + hash}>
-          {hash}
-        </a>
+        <ExternalLink href={url + hash} text={hash} />
       </Typography>
     );
   } else if (
@@ -45,9 +44,7 @@ function ExplorerLink({ ledger, hash, resourceType }: ExplorerLinkProps) {
 
     return (
       <Typography noWrap={true}>
-        <a target="_blank" href={url + hash}>
-          {hash}
-        </a>
+        <ExternalLink href={url + hash} text={hash} />
       </Typography>
     );
   } else {
