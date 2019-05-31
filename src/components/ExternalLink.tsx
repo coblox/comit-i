@@ -11,7 +11,7 @@ export default function ExternalLink({
   text,
   openInNewTab = true
 }: Props) {
-  const target = openInNewTab ? "_blank" : null;
+  const target = openInNewTab ? "_blank" : undefined;
 
   return (
     <a
