@@ -86,6 +86,9 @@ export function reducer(
         return {
           state: {
             actionExecutionStatus: ActionExecutionStatus.Done
+          },
+          sideEffect: {
+            type: "reloadData"
           }
         };
       }
