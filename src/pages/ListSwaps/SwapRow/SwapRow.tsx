@@ -145,7 +145,7 @@ function SwapRow({ swap, history, reload }: SwapRowProps) {
                   dispatch(actionButtonClicked(action));
                 }}
               >
-                {action.title}
+                {action.title || action.name}
               </Button>
             ))
           )}
