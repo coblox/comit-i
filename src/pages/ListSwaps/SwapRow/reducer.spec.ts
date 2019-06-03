@@ -34,6 +34,31 @@ describe("SwapRowReducer", () => {
     });
   });
 
+  it("should open parameters dialog if action has fields", () => {
+    const actionWithField: Action = {
+      fields: [
+        {
+          name: "address",
+          type: "text",
+          title: "Redeem Identity"
+        }
+      ],
+      name: "accept",
+      method: "POST",
+      href: "/foo/bar"
+    };
+
+    const { state, sideEffect } = reducer(
+      initialState,
+      actionButtonClicked(actionWithField)
+    );
+
+    expect(state).toStrictEqual({
+      activeSirenParameterDialog: actionWithField
+    });
+    expect(sideEffect).toBeUndefined();
+  });
+
   it("should trigger action if parameters dialog is submitted", () => {
     const actionWithField: Action = {
       fields: [
@@ -71,31 +96,6 @@ describe("SwapRowReducer", () => {
         }
       }
     });
-  });
-
-  it("should open parameters dialog if action has fields", () => {
-    const actionWithField: Action = {
-      fields: [
-        {
-          name: "address",
-          type: "text",
-          title: "Redeem Identity"
-        }
-      ],
-      name: "accept",
-      method: "POST",
-      href: "/foo/bar"
-    };
-
-    const { state, sideEffect } = reducer(
-      initialState,
-      actionButtonClicked(actionWithField)
-    );
-
-    expect(state).toStrictEqual({
-      activeSirenParameterDialog: actionWithField
-    });
-    expect(sideEffect).toBeUndefined();
   });
 
   it("should reload after ledger action dialog is closed", () => {
