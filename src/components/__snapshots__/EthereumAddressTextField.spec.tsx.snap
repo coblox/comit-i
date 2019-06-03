@@ -2,15 +2,15 @@
 
 exports[`EthereumAddressTextField should render with meta mask icon if Web3 is available 1`] = `
 <div
-  className="MuiFormControl-root-1 Hook-textField-159kz2y"
+  className="MuiFormControl-root MuiTextField-root makeStyles-textField-1"
 >
   <div
-    className="MuiInputBase-root-18 MuiInput-root-5 MuiInput-underline-9 MuiInputBase-formControl-19 MuiInput-formControl-6 MuiInputBase-adornedEnd-23"
+    className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl MuiInputBase-adornedEnd"
     onClick={[Function]}
   >
     <input
       aria-invalid={false}
-      className="MuiInputBase-input-28 MuiInput-input-13 MuiInputBase-inputAdornedEnd-34"
+      className="MuiInputBase-input MuiInput-input MuiInputBase-inputAdornedEnd"
       disabled={false}
       onBlur={[Function]}
       onChange={[Function]}
@@ -19,16 +19,15 @@ exports[`EthereumAddressTextField should render with meta mask icon if Web3 is a
       type="text"
     />
     <div
-      className="MuiInputAdornment-root-35 MuiInputAdornment-positionEnd-38"
+      className="MuiInputAdornment-root MuiInputAdornment-positionEnd"
     >
       <button
         aria-describedby={null}
         aria-label="Load"
-        className="MuiButtonBase-root-54 MuiIconButton-root-48"
+        className="MuiButtonBase-root MuiIconButton-root"
         disabled={false}
         onBlur={[Function]}
         onClick={[Function]}
-        onContextMenu={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
         onKeyUp={[Function]}
@@ -39,150 +38,150 @@ exports[`EthereumAddressTextField should render with meta mask icon if Web3 is a
         onTouchEnd={[Function]}
         onTouchMove={[Function]}
         onTouchStart={[Function]}
-        tabIndex="0"
+        tabIndex={0}
         title="Please unlock metamask first."
         type="button"
       >
         <span
-          className="MuiIconButton-label-53"
+          className="MuiIconButton-label"
         >
           <svg
             aria-hidden="true"
-            className="MuiSvgIcon-root-57"
+            className="MuiSvgIcon-root"
             focusable="false"
             role="presentation"
             viewBox="0 0 318.6 318.6"
           >
             <polygon
-              className="Hook-st0-akvlug"
+              className="makeStyles-st0-60"
               points="274.1,35.5 174.6,109.4 193,65.8 "
             />
             <g>
               <polygon
-                className="Hook-st1-1pucaoc"
+                className="makeStyles-st1-61"
                 points="44.4,35.5 143.1,110.1 125.6,65.8"
               />
               <polygon
-                className="Hook-st1-1pucaoc"
+                className="makeStyles-st1-61"
                 points="238.3,206.8 211.8,247.4 268.5,263 284.8,207.7"
               />
               <polygon
-                className="Hook-st1-1pucaoc"
+                className="makeStyles-st1-61"
                 points="33.9,207.7 50.1,263 106.8,247.4 80.3,206.8"
               />
               <polygon
-                className="Hook-st1-1pucaoc"
+                className="makeStyles-st1-61"
                 points="103.6,138.2 87.8,162.1 144.1,164.6 142.1,104.1"
               />
               <polygon
-                className="Hook-st1-1pucaoc"
+                className="makeStyles-st1-61"
                 points="214.9,138.2 175.9,103.4 174.6,164.6 230.8,162.1"
               />
               <polygon
-                className="Hook-st1-1pucaoc"
+                className="makeStyles-st1-61"
                 points="106.8,247.4 140.6,230.9 111.4,208.1"
               />
               <polygon
-                className="Hook-st1-1pucaoc"
+                className="makeStyles-st1-61"
                 points="177.9,230.9 211.8,247.4 207.1,208.1"
               />
             </g>
             <g>
               <polygon
-                className="Hook-st2-1zlvjm"
+                className="makeStyles-st2-62"
                 points="211.8,247.4 177.9,230.9 180.6,253 180.3,262.3"
               />
               <polygon
-                className="Hook-st2-1zlvjm"
+                className="makeStyles-st2-62"
                 points="106.8,247.4 138.3,262.3 138.1,253 140.6,230.9"
               />
             </g>
             <polygon
-              className="Hook-st3-locn6s"
+              className="makeStyles-st3-63"
               points="138.8,193.5 110.6,185.2 130.5,176.1 "
             />
             <polygon
-              className="Hook-st3-locn6s"
+              className="makeStyles-st3-63"
               points="179.7,193.5 188,176.1 208,185.2 "
             />
             <g>
               <polygon
-                className="Hook-st4-ayt32h"
+                className="makeStyles-st4-64"
                 points="106.8,247.4 111.6,206.8 80.3,207.7"
               />
               <polygon
-                className="Hook-st4-ayt32h"
+                className="makeStyles-st4-64"
                 points="207,206.8 211.8,247.4 238.3,207.7"
               />
               <polygon
-                className="Hook-st4-ayt32h"
+                className="makeStyles-st4-64"
                 points="230.8,162.1 174.6,164.6 179.8,193.5 188.1,176.1 208.1,185.2"
               />
               <polygon
-                className="Hook-st4-ayt32h"
+                className="makeStyles-st4-64"
                 points="110.6,185.2 130.6,176.1 138.8,193.5 144.1,164.6 87.8,162.1"
               />
             </g>
             <g>
               <polygon
-                className="Hook-st5-1kphhk5"
+                className="makeStyles-st5-65"
                 points="87.8,162.1 111.4,208.1 110.6,185.2"
               />
               <polygon
-                className="Hook-st5-1kphhk5"
+                className="makeStyles-st5-65"
                 points="208.1,185.2 207.1,208.1 230.8,162.1"
               />
               <polygon
-                className="Hook-st5-1kphhk5"
+                className="makeStyles-st5-65"
                 points="144.1,164.6 138.8,193.5 145.4,227.6 146.9,182.7"
               />
               <polygon
-                className="Hook-st5-1kphhk5"
+                className="makeStyles-st5-65"
                 points="174.6,164.6 171.9,182.6 173.1,227.6 179.8,193.5"
               />
             </g>
             <polygon
-              className="Hook-st6-o0fg0r"
+              className="makeStyles-st6-66"
               points="179.8,193.5 173.1,227.6 177.9,230.9 207.1,208.1 208.1,185.2 "
             />
             <polygon
-              className="Hook-st6-o0fg0r"
+              className="makeStyles-st6-66"
               points="110.6,185.2 111.4,208.1 140.6,230.9 145.4,227.6 138.8,193.5 "
             />
             <polygon
-              className="Hook-st7-ebyx8i"
+              className="makeStyles-st7-67"
               points="180.3,262.3 180.6,253 178.1,250.8 140.4,250.8 138.1,253 138.3,262.3 106.8,247.4 117.8,256.4 140.1,271.9 178.4,271.9 200.8,256.4 211.8,247.4 "
             />
             <polygon
-              className="Hook-st8-poddl"
+              className="makeStyles-st8-68"
               points="177.9,230.9 173.1,227.6 145.4,227.6 140.6,230.9 138.1,253 140.4,250.8 178.1,250.8 180.6,253 "
             />
             <g>
               <polygon
-                className="Hook-st9-1jrx0zn"
+                className="makeStyles-st9-69"
                 points="278.3,114.2 286.8,73.4 274.1,35.5 177.9,106.9 214.9,138.2 267.2,153.5 278.8,140 273.8,136.4 281.8,129.1 275.6,124.3 283.6,118.2"
               />
               <polygon
-                className="Hook-st9-1jrx0zn"
+                className="makeStyles-st9-69"
                 points="31.8,73.4 40.3,114.2 34.9,118.2 42.9,124.3 36.8,129.1 44.8,136.4 39.8,140 51.3,153.5 103.6,138.2 140.6,106.9 44.4,35.5"
               />
             </g>
             <polygon
-              className="Hook-st6-o0fg0r"
+              className="makeStyles-st6-66"
               points="267.2,153.5 214.9,138.2 230.8,162.1 207.1,208.1 238.3,207.7 284.8,207.7 "
             />
             <polygon
-              className="Hook-st6-o0fg0r"
+              className="makeStyles-st6-66"
               points="103.6,138.2 51.3,153.5 33.9,207.7 80.3,207.7 111.4,208.1 87.8,162.1 "
             />
             <polygon
-              className="Hook-st6-o0fg0r"
+              className="makeStyles-st6-66"
               points="174.6,164.6 177.9,106.9 193.1,65.8 125.6,65.8 140.6,106.9 144.1,164.6 145.3,182.8 145.4,227.6 173.1,227.6 173.3,182.8 "
             />
           </svg>
         </span>
         <span
-          className="MuiTouchRipple-root-66"
+          className="MuiTouchRipple-root"
         />
       </button>
     </div>
@@ -192,15 +191,15 @@ exports[`EthereumAddressTextField should render with meta mask icon if Web3 is a
 
 exports[`EthereumAddressTextField should render without Web3 being available 1`] = `
 <div
-  className="MuiFormControl-root-1 Hook-textField-159kz2y"
+  className="MuiFormControl-root MuiTextField-root makeStyles-textField-1"
 >
   <div
-    className="MuiInputBase-root-18 MuiInput-root-5 MuiInput-underline-9 MuiInputBase-formControl-19 MuiInput-formControl-6 MuiInputBase-adornedEnd-23"
+    className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl MuiInputBase-adornedEnd"
     onClick={[Function]}
   >
     <input
       aria-invalid={false}
-      className="MuiInputBase-input-28 MuiInput-input-13 MuiInputBase-inputAdornedEnd-34"
+      className="MuiInputBase-input MuiInput-input MuiInputBase-inputAdornedEnd"
       disabled={false}
       onBlur={[Function]}
       onChange={[Function]}
@@ -209,7 +208,7 @@ exports[`EthereumAddressTextField should render without Web3 being available 1`]
       type="text"
     />
     <div
-      className="MuiInputAdornment-root-35 MuiInputAdornment-positionEnd-38"
+      className="MuiInputAdornment-root MuiInputAdornment-positionEnd"
     >
       <span />
     </div>
