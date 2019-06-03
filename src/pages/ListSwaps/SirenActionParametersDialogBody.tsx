@@ -102,7 +102,7 @@ function renderField(
         data-cy={"action-text-field"}
         required={true}
         key={field.name}
-        label={field.title}
+        label={field.title || field.name}
         onAddress={onChange}
         onChange={event => onChange(event.target.value)}
         value={value}
@@ -115,7 +115,7 @@ function renderField(
       data-cy={"action-text-field"}
       required={true}
       key={field.name}
-      label={field.title}
+      label={field.title || field.name}
       type={field.type}
       value={value}
       onChange={event => onChange(event.target.value)}
