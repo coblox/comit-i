@@ -14,6 +14,20 @@ describe("The Accept action", () => {
     cy.get("[data-cy=dialog]").should("exist");
   });
 
+  it("should not allow to submit the form without filling all fields", () => {
+    // if there are fields
+    cy.get("[data-cy=dialog]")
+      .find("[data-cy=action-text-field]")
+      .should("exist");
+
+    // submitting the dialog should not close it
+    cy.get("[data-cy=dialog]")
+      .find("[data-cy=accept-button]")
+      .click();
+
+    cy.get("[data-cy=dialog]").should("exist");
+  });
+
   it("should close the dialog when clicking close", () => {
     cy.get("[data-cy=dialog]")
       .find("[data-cy=close-button]")
