@@ -2,9 +2,9 @@ import {
   Button,
   DialogActions,
   DialogContent,
+  DialogContentText,
   DialogTitle
 } from "@material-ui/core";
-import { ButtonProps } from "@material-ui/core/Button";
 import { DialogTitleProps } from "@material-ui/core/DialogTitle";
 import React, { useReducer } from "react";
 import { Action, Field } from "../../../gen/siren";
@@ -53,14 +53,15 @@ export default function SirenActionParametersDialogBody({
           onSubmit(actionPayload);
         }}
       >
-        <DialogContent>{formFields}</DialogContent>
+        <DialogContent>
+          {formFields && !formFields.every(elem => elem === null) && (
+            <React.Fragment>
+              <DialogContentText>Please fill in the form.</DialogContentText>
+              {formFields}
+            </React.Fragment>
+          )}
+        </DialogContent>
         <DialogActions>
-          <PrimaryActionButton
-            method={method}
-            title={title}
-            type={"submit"}
-            data-cy={`${action.name}-button`}
-          />
           <Button
             type={"button"}
             variant={"contained"}
@@ -68,7 +69,15 @@ export default function SirenActionParametersDialogBody({
             onClick={onClose}
             data-cy={"close-button"}
           >
-            Close
+            Cancel
+          </Button>
+          <Button
+            type={"submit"}
+            variant={"contained"}
+            color={"primary"}
+            data-cy={`ok-button`}
+          >
+            OK
           </Button>
         </DialogActions>
       </form>
@@ -81,6 +90,12 @@ function renderField(
   value: any,
   onChange: (newValue: any) => void
 ) {
+  /* Do not display a reason field for declining until we're ready to
+     support that */
+  if (field.name === "reason") {
+    return null;
+  }
+
   if (field.class.includes("ethereum") && field.class.includes("address")) {
     return (
       <EthereumAddressTextField
@@ -149,34 +164,13 @@ function Title({
       return (
         <DialogTitle
           {...dialogTitleProps}
-        >{`To fetch the '${title}' action, please fill these fields.`}</DialogTitle>
+        >{`Fetch the '${title}' action?`}</DialogTitle>
       );
     default:
       return (
         <DialogTitle
           {...dialogTitleProps}
-        >{`To execute the '${title}' action, please fill these fields.`}</DialogTitle>
-      );
-  }
-}
-
-function PrimaryActionButton({
-  method,
-  title,
-  ...buttonProps
-}: DisplayProps & ButtonProps) {
-  switch (method) {
-    case "GET":
-      return (
-        <Button variant={"contained"} color={"primary"} {...buttonProps}>
-          {`Fetch ${title}`}
-        </Button>
-      );
-    default:
-      return (
-        <Button variant={"contained"} color={"primary"} {...buttonProps}>
-          {`Execute ${title}`}
-        </Button>
+        >{`Execute the '${title}' action?`}</DialogTitle>
       );
   }
 }
