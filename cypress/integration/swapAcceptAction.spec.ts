@@ -22,7 +22,7 @@ describe("The Accept action", () => {
 
     // submitting the dialog should not close it
     cy.get("[data-cy=dialog]")
-      .find("[data-cy=accept-button]")
+      .find("[data-cy=ok-button]")
       .click();
 
     cy.get("[data-cy=dialog]").should("exist");
@@ -53,7 +53,7 @@ describe("The Accept action", () => {
       .type("ethereum_address");
 
     cy.get("[data-cy=dialog]")
-      .find("[data-cy=accept-button]")
+      .find("[data-cy=ok-button]")
       .click();
 
     cy.get("[data-cy=action-request-circular-progress]").should("exist");

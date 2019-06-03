@@ -63,7 +63,7 @@ describe("The Redeem action", () => {
         .type(20);
 
       cy.get("[data-cy=dialog]")
-        .find("[data-cy=redeem-button]")
+        .find("[data-cy=ok-button]")
         .click();
       cy.get("[data-cy=dialog]").should("not.exist");
 

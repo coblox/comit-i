@@ -154,6 +154,8 @@ describe("SwapRowReducer", () => {
     expect(state).toStrictEqual({
       actionExecutionStatus: ActionExecutionStatus.Done
     });
-    expect(sideEffect).toBeUndefined();
+    expect(sideEffect).toStrictEqual({
+      type: "reloadData"
+    });
   });
 });

@@ -8,7 +8,7 @@ Array [
     <h6
       className="MuiTypography-root MuiTypography-h6"
     >
-      To fetch the 'Redeem' action, please fill these fields.
+      Fetch the 'Redeem' action?
     </h6>
   </div>,
   <form
@@ -17,8 +17,13 @@ Array [
     <div
       className="MuiDialogContent-root"
     >
+      <p
+        className="MuiTypography-root MuiDialogContentText-root MuiTypography-body1 MuiTypography-colorTextSecondary"
+      >
+        Please fill in the form.
+      </p>
       <div
-        className="MuiFormControl-root MuiTextField-root makeStyles-textField-34"
+        className="MuiFormControl-root MuiTextField-root makeStyles-textField-35"
         data-cy="action-text-field"
       >
         <label
@@ -51,7 +56,7 @@ Array [
         </div>
       </div>
       <div
-        className="MuiFormControl-root MuiTextField-root makeStyles-textField-34"
+        className="MuiFormControl-root MuiTextField-root makeStyles-textField-35"
         data-cy="action-text-field"
       >
         <label
@@ -88,29 +93,6 @@ Array [
       className="MuiDialogActions-root MuiDialogActions-spacing"
     >
       <button
-        className="MuiButtonBase-root MuiButton-root MuiButton-containedPrimary MuiButton-contained"
-        data-cy="redeem-button"
-        disabled={false}
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchEnd={[Function]}
-        onTouchMove={[Function]}
-        onTouchStart={[Function]}
-        tabIndex={0}
-        type="submit"
-      >
-        <span
-          className="MuiButton-label"
-        >
-          Fetch Redeem
-        </span>
-      </button>
-      <button
         className="MuiButtonBase-root MuiButton-root MuiButton-containedSecondary MuiButton-contained"
         data-cy="close-button"
         disabled={false}
@@ -131,7 +113,30 @@ Array [
         <span
           className="MuiButton-label"
         >
-          Close
+          Cancel
+        </span>
+      </button>
+      <button
+        className="MuiButtonBase-root MuiButton-root MuiButton-containedPrimary MuiButton-contained"
+        data-cy="ok-button"
+        disabled={false}
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="submit"
+      >
+        <span
+          className="MuiButton-label"
+        >
+          OK
         </span>
       </button>
     </div>
