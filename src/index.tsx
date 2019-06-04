@@ -1,5 +1,5 @@
 import { CssBaseline } from "@material-ui/core";
-import { ThemeProvider } from "@material-ui/styles"; // Workaround until @material-ui/styles is stable
+import { ThemeProvider } from "@material-ui/styles";
 import "promise-polyfill/src/polyfill"; // Not all environments support Promise.finally
 import React from "react";
 import ReactDOM from "react-dom";
