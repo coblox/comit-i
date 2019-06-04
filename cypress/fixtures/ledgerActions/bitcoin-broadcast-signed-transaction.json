@@ -2,7 +2,7 @@
   "type": "bitcoin-broadcast-signed-transaction",
   "payload": {
     "hex": "raw_transaction",
-    "network": "1",
+    "network": "regtest",
     "min_median_block_time": "1"
   }
 }
