@@ -64,7 +64,7 @@ function SwapRow({ swap, history, reload }: SwapRowProps) {
 
     switch (sideEffect.type) {
       case "reloadData": {
-        setTimeout(() => reload(), 1000);
+        reload();
         return;
       }
       case "executeAction": {

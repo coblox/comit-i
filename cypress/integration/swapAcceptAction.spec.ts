@@ -43,7 +43,7 @@ describe("The Accept action", () => {
       delay: 2000,
       response: {}
     }).as("postCaller");
-    cy.route("http://localhost:8000/swaps", "fixture:swapWithAccept.json");
+    cy.route("http://localhost:8000/swaps", "fixture:swapWithNoActions.json");
 
     cy.get("[data-cy=accept-button]").click();
 
@@ -61,5 +61,6 @@ describe("The Accept action", () => {
     cy.wait("@postCaller");
 
     cy.get("[data-cy=dialog]").should("not.exist");
+    cy.get("[data-cy=accept-button]").should("not.exist");
   });
 });
